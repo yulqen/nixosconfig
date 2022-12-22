@@ -4,6 +4,7 @@
     programs.vim = {
       plugins = with pkgs.vimPlugins; [
         vim-sensible
+        bufexplorer
       ];
       enable = true;
       settings = {
