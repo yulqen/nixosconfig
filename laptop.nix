@@ -1,9 +1,9 @@
 
 { config, pkgs, ...}:
 {
-
+  imports = [ ./vim.nix ];
+  
   # shell
-
   users.users.lemon.shell = pkgs.fish;
   environment.shells = with pkgs; [ fish ];
 
@@ -68,8 +68,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim
     alsa-utils
+    vim
     pavucontrol
     wget
     firefox
