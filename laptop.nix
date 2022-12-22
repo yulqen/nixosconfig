@@ -12,6 +12,7 @@
     nixpkgs.config.allowUnfree = true;
     home.packages = [
       pkgs.tmux
+      pkgs.git
       pkgs.fish
       pkgs.pass
       pkgs.spotify
@@ -22,6 +23,45 @@
     programs.fish.shellAliases = {
       chubby = "echo 'chubby bobbins!'";
     };
+    programs.git = {
+      enable = true;
+      userName = "Matthew Lemon";
+      userEmail = "y@yulqen.org";
+      aliases = {
+          co = "checkout";
+          ci = "commit";
+          br = "branch";
+          st = "status -sb --ignore-submodules=all";
+          ac = "!git add -A && git commit -m";
+          lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
+	        d = "difftool";
+      };
+      extraConfig = {
+        color = {
+             ui = true;
+             branch = true;
+             diff = true;
+             interactive = true;
+             status = true;
+             log = false;
+        };
+        push = {
+          default = "simple";
+        };
+        pull = {
+          rebase = false;
+        };
+        init = {
+          defaultBranch = "master"; # yes, snowflakes!
+        };
+        difftool = {
+          prompt = false;
+        };
+        diff = {
+          tool = "vimdiff";
+        };
+      };
+    };
     home.stateVersion = "22.11";
   };
 
@@ -29,7 +69,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
-    git
     alsa-utils
     pavucontrol
     wget
