@@ -18,6 +18,8 @@
       pkgs.spotify
       pkgs.alacritty
       pkgs.fzf
+      pkgs.gajim
+      pkgs.mpv
     ];
     programs.fish.enable = true;
     programs.fish.shellAliases = {
