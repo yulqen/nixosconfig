@@ -10,6 +10,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./laptop.nix
     ];
 
   # Bootloader.
@@ -22,23 +23,6 @@
     "/crypto_keyfile.bin" = null;
   };
   
-  fonts.fonts = with pkgs; [
-	iosevka
-	jetbrains-mono
-	dejavu_fonts
-	noto-fonts
-	hack-font
-  ];
-
-  fonts.fontconfig.defaultFonts = {
-	monospace = ["JetBrains Mono"];
-	sansSerif = ["Noto Sans"];
-	serif = ["Noto Serif"];
-};
-
-  # caps lock!
-  services.xserver.xkbOptions = "ctrl:swapcaps";
-
   # shell
   programs.fish.enable = true;
   users.users.lemon.shell = pkgs.fish;
