@@ -2,6 +2,16 @@
 { config, pkgs, ...}:
 {
 
+  # sound
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+  };
 
   # fonts
     fonts.fonts = with pkgs; [
@@ -75,7 +85,10 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
-      vim 
+      vim
+      alsa-utils
+      pavucontrol
+      spotify
       wget
       alacritty
       firefox
