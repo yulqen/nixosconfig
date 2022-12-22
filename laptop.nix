@@ -86,6 +86,7 @@
     # $ nix search wget
     environment.systemPackages = with pkgs; [
       vim
+      pass
       alsa-utils
       pavucontrol
       spotify
