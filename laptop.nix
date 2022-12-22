@@ -86,6 +86,7 @@
     # $ nix search wget
     environment.systemPackages = with pkgs; [
       vim
+      git
       pass
       alsa-utils
       pavucontrol
