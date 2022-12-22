@@ -2,6 +2,47 @@
 { config, pkgs, ...}:
 {
 
+  # shell
+
+  users.users.lemon.shell = pkgs.fish;
+  environment.shells = with pkgs; [ fish ];
+
+  # home-manager
+  home-manager.users.lemon = { pkgs, ... }: {
+    nixpkgs.config.allowUnfree = true;
+    home.packages = [
+      pkgs.tmux
+      pkgs.fish
+      pkgs.pass
+      pkgs.spotify
+      pkgs.alacritty
+      pkgs.fzf
+    ];
+    programs.fish.enable = true;
+    programs.fish.shellAliases = {
+      chubby = "echo 'chubby bobbins!'";
+    };
+    home.stateVersion = "22.11";
+  };
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+    alsa-utils
+    pavucontrol
+    wget
+    firefox
+    syncthing
+    emacs
+    notmuch.emacs
+    notmuch
+    gnupg
+    pinentry
+  ];
+  
+
   # sound
   security.rtkit.enable = true;
   services.pipewire = {
@@ -16,7 +57,7 @@
   # fonts
     fonts.fonts = with pkgs; [
 	    iosevka
-	    jetbrains-mono
+	  nnn  jetbrains-mono
 	    dejavu_fonts
 	    noto-fonts
 	    hack-font
@@ -39,14 +80,7 @@
       packages = with pkgs; [];
     };
 
-    # shell
-    programs.fish.enable = true;
-    users.users.lemon.shell = pkgs.fish;
-    environment.shells = with pkgs; [ fish ];
-    # an example of setting a fish alias
-    programs.fish.shellAliases = {
-      chubby = "echo 'chubby bobbins!'";
-    };
+
 
     # Enable networking
     networking.networkmanager.enable = true;
@@ -82,27 +116,6 @@
       };
 	  };
 
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    environment.systemPackages = with pkgs; [
-      vim
-      git
-      pass
-      alsa-utils
-      pavucontrol
-      spotify
-      wget
-      alacritty
-      firefox
-      syncthing
-      emacs
-      notmuch.emacs
-      notmuch
-      tmux
-      fzf
-      gnupg
-      pinentry
-    ];
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
