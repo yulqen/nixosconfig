@@ -20,7 +20,14 @@
       pkgs.fzf
       pkgs.gajim
       pkgs.mpv
+      pkgs.yt-dlp
     ];
+    programs.mpv.config = {
+      hwdec = "vappi";
+      audio-channels = 2;
+      save-position-on-quit = true;
+      script-opts-append = "ytdl_hook-ytdl_path=yt-dlp";
+    };
     programs.fish.enable = true;
     programs.fish.shellAliases = {
       chubby = "echo 'chubby bobbins!'";
