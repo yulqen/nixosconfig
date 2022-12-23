@@ -83,7 +83,7 @@
     wget
     firefox
     syncthing
-    emacs
+    emacs-gtk
     notmuch.emacs
     notmuch
     gnupg
