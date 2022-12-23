@@ -3,6 +3,7 @@
 {
   imports = [ <home-manager/nixos>
               ./vim.nix
+              ./i3.nix
             ];
   
   # shell
@@ -23,6 +24,7 @@
       pkgs.gajim
       pkgs.mpv
       pkgs.yt-dlp
+      pkgs.clipmenu
     ];
     programs.mpv.config = {
       hwdec = "vappi";
@@ -107,6 +109,7 @@
   # fonts
   fonts.fonts = with pkgs; [
 	  iosevka-bin
+    terminus_font
 	  jetbrains-mono
 	  dejavu_fonts
 	  noto-fonts
@@ -138,8 +141,14 @@
   # Configure keymap in X11
   services.xserver = {
     enable = true;
+    desktopManager.xterm.enable = false;
     windowManager.i3.enable = true;
-    windowManager.i3.configFile = /home/lemon/.config/i3/config;
+    windowManager.i3.extraPackages = with pkgs; [
+      dmenu
+      i3status
+      i3lock
+    ];
+     displayManager.defaultSession = "none+i3";
     displayManager.gdm.enable = true;
     layout = "gb";
     xkbVariant = "";

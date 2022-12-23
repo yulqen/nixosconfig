@@ -3,18 +3,21 @@
 let 
   mod = "Mod4";
 in {
+  home-manager.users.lemon.xsession.enable = true;
   home-manager.users.lemon.xsession.windowManager.i3 = {
     enable = true;
     config = {
+      terminal = "alacritty";
       modifier = mod;
-      fonts = {
-        names = ["monospace-10"];
-        style = "Regular";
-        size = 11.0;
+      fonts  = {
+        names = ["DejaVu Sans Mono"];
+        # style = "Regular";
+        size = 10.0;
       };
       keybindings = lib.mkOptionDefault {
-        "${mod}+d" = "exec ${pkgs.dmenu}/bin/dmenu_run";
-        "${mod}+p" = "exec ${pkgs.dmenu}/bin/passmenu";        
+        "${mod}+d" = "exec ${pkgs.dmenu}/bin/dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'DejaVu Sans Mono-10'";
+        "${mod}+p" = "exec ${pkgs.dmenu}/bin/passmenu";
+        "${mod}+t" = "exec ${pkgs.dmenu}/bin/i3-dmenu-desktop";
 
         # Focus
         "${mod}+h" = "focus left";
@@ -30,8 +33,12 @@ in {
       };
       bars = [
         {
-          position = "bottom";
+          position = "top";
           statusCommand = "${pkgs.i3status}/bin/i3status";
+          fonts = {
+            names = [ "DejaVu Sans Mono" ];
+            size = 10.0;
+          };
         }
       ];
     };
