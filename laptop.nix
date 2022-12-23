@@ -103,73 +103,73 @@
   };
 
   # fonts
-    fonts.fonts = with pkgs; [
-	    iosevka
-	  nnn  jetbrains-mono
-	    dejavu_fonts
-	    noto-fonts
-	    hack-font
-    ];
+  fonts.fonts = with pkgs; [
+	  iosevka-bin
+	  jetbrains-mono
+	  dejavu_fonts
+	  noto-fonts
+	  hack-font
+  ];
     
-    fonts.fontconfig.defaultFonts = {
-	      monospace = ["JetBrains Mono"];
-	      sansSerif = ["Noto Sans"];
-	      serif = ["Noto Serif"];
+  fonts.fontconfig.defaultFonts = {
+	  monospace = ["Iosevka Fixed"];
+	  sansSerif = ["Noto Sans"];
+	  serif = ["Noto Serif"];
+  };
+  
+  # caps lock!
+  services.xserver.xkbOptions = "ctrl:swapcaps";
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.lemon = {
+    isNormalUser = true;
+    description = "lemon";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [];
+  };
+
+
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    enable = true;
+    windowManager.i3.enable = true;
+    windowManager.i3.configFile = /home/lemon/.config/i3/config;
+    displayManager.gdm.enable = true;
+    layout = "gb";
+    xkbVariant = "";
+  };
+
+  # syncthing
+  services.syncthing = {
+		enable = true;
+    user = "lemon";
+		dataDir = "/home/lemon/Documents";
+		configDir = "/home/lemon/.config/syncthing";
+    devices = {
+      "16693433.xyz" = { id = "7ZEQHKZ-3VWYMVX-ZAS527Q-HS2KQMF-VH7RNGO-MBB6QGU-6SENRAD-T7G2RQM"; };
     };
-    
-    # caps lock!
-    services.xserver.xkbOptions = "ctrl:swapcaps";
-
-    # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.lemon = {
-      isNormalUser = true;
-      description = "lemon";
-      extraGroups = [ "networkmanager" "wheel" ];
-      packages = with pkgs; [];
-    };
-
-
-
-    # Enable networking
-    networking.networkmanager.enable = true;
-
-    # Configure keymap in X11
-    services.xserver = {
-      enable = true;
-      windowManager.i3.enable = true;
-      windowManager.i3.configFile = /home/lemon/.config/i3/config;
-      displayManager.gdm.enable = true;
-      layout = "gb";
-      xkbVariant = "";
-    };
-
-    # syncthing
-    services.syncthing = {
-		  enable = true;
-      user = "lemon";
-		  dataDir = "/home/lemon/Documents";
-		  configDir = "/home/lemon/.config/syncthing";
-      devices = {
-        "16693433.xyz" = { id = "7ZEQHKZ-3VWYMVX-ZAS527Q-HS2KQMF-VH7RNGO-MBB6QGU-6SENRAD-T7G2RQM"; };
+    folders = {
+      "eahtt-9qkuk" = {
+        path = "/home/lemon/Documents";
+        devices = [ "16693433.xyz" ];
       };
-      folders = {
-        "eahtt-9qkuk" = {
-          path = "/home/lemon/Documents";
-          devices = [ "16693433.xyz" ];
-        };
-        "yjed2-erxei" = {
-          path = "/home/lemon/org";
-          devices = [ "16693433.xyz" ];
-        };        
-      };
-	  };
+      "yjed2-erxei" = {
+        path = "/home/lemon/org";
+        devices = [ "16693433.xyz" ];
+      };        
+    };
+	};
 
 
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # programs.mtr.enable = true;
-    programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };      
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };      
 }
