@@ -5,6 +5,16 @@
               ./vim.nix
               ./i3.nix
             ];
+
+  # garbage collection
+  nix = {
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
   
   # shell
   users.users.lemon.shell = pkgs.fish;
