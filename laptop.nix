@@ -37,6 +37,18 @@
       pkgs.clipmenu
       pkgs.firefox
     ];
+    # showing an example of how to put a verbatim config file in.
+    home.file = {
+      ".config/alacritty/alacritty.yml".text = ''
+        window:
+          decorations: none
+        font:
+          normal:
+            family: Iosevka
+            style: Regular
+          size: 10.0
+      '';
+    };
     programs.mpv.config = {
       hwdec = "vappi";
       audio-channels = 2;
