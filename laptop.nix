@@ -35,6 +35,7 @@
       pkgs.mpv
       pkgs.yt-dlp
       pkgs.clipmenu
+      pkgs.firefox
     ];
     programs.mpv.config = {
       hwdec = "vappi";
@@ -95,7 +96,6 @@
     vim
     pavucontrol
     wget
-    firefox
     syncthing
     emacs-gtk
     notmuch.emacs
