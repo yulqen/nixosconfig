@@ -1,7 +1,9 @@
 
 { config, pkgs, ...}:
 {
-  imports = [ ./vim.nix ];
+  imports = [ <home-manager/nixos>
+              ./vim.nix
+            ];
   
   # shell
   users.users.lemon.shell = pkgs.fish;
