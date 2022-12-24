@@ -42,6 +42,7 @@
       pkgs.ledger
       pkgs.wget
       pkgs.emacs-gtk
+      pkgs.file
     ];
     # showing an example of how to put a verbatim config file in.
     home.file = {
@@ -64,6 +65,7 @@
     programs.fish.enable = true;
     programs.fish.shellAliases = {
       chubby = "echo 'chubby bobbins!'";
+      bud = "cd ~/Documents/Budget/ledger/hledger/";
     };
     programs.git = {
       enable = true;
