@@ -36,6 +36,12 @@
       pkgs.yt-dlp
       pkgs.clipmenu
       pkgs.firefox
+      pkgs.gnome.seahorse
+      pkgs.xclip
+      pkgs.hledger
+      pkgs.ledger
+      pkgs.wget
+      pkgs.emacs-gtk
     ];
     # showing an example of how to put a verbatim config file in.
     home.file = {
@@ -107,9 +113,7 @@
     alsa-utils
     vim
     pavucontrol
-    wget
     syncthing
-    emacs-gtk
     notmuch.emacs
     notmuch
     gnupg
