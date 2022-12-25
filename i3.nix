@@ -16,8 +16,8 @@ in {
       };
       keybindings = lib.mkOptionDefault {
         "${mod}+d" = "exec ${pkgs.dmenu}/bin/dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'DejaVu Sans Mono-10'";
-        "${mod}+p" = "exec ${pkgs.dmenu}/bin/passmenu";
-        "${mod}+t" = "exec ${pkgs.dmenu}/bin/i3-dmenu-desktop";
+        "${mod}+p" = "exec ${pkgs.pass}/bin/passmenu -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'DejaVu Sans Mono-10'";
+        "${mod}+t" = "exec ${pkgs.dmenu}/bin/i3-dmenu-desktop -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'DejaVu Sans Mono-10'";
 
         # Focus
         "${mod}+h" = "focus left";
