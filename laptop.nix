@@ -65,11 +65,14 @@
       save-position-on-quit = true;
       script-opts-append = "ytdl_hook-ytdl_path=yt-dlp";
     };
-    programs.fish.enable = true;
-    programs.fish.shellAliases = {
-      chubby = "echo 'chubby bobbins!'";
-      bud = "cd ~/Documents/Budget/ledger/hledger/";
+    programs.fish = {
+      enable = true;
+      shellAliases = {
+        chubby = "echo 'chubby bobbins!'";
+        bud = "cd ~/Documents/Budget/ledger/hledger/";
+      };
     };
+
     programs.git = {
       enable = true;
       userName = "Matthew Lemon";
