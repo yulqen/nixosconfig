@@ -23,7 +23,7 @@
   # home-manager
   home-manager.users.lemon = { pkgs, ... }: {
     home.sessionVariables = {
-      LEDGER_FILE = "~/Documents/Budget/ledger/hledger/budget.ledger";
+      LEDGER_FILE = "/home/lemon/Documents/Budget/ledger/hledger/budget.ledger";
     };
     nixpkgs.config.allowUnfree = true;
     home.packages = [
