@@ -24,6 +24,10 @@
   home-manager.users.lemon = { pkgs, ... }: {
     home.sessionVariables = {
       LEDGER_FILE = "/home/lemon/Documents/Budget/ledger/hledger/budget.ledger";
+      FZF_DEFAULT_COMMAND = "ag --nocolor -g \"\"";
+      # FZF_CTRL_T_COMMAND = "${FZF_DEFAULT_COMMAND}";
+      # FZF_ALT_C_COMMAND = "${FZF_DEFAULT_COMMAND}";
+      FZF_DEFAULT_OPTS = "--color info:108,prompt:109,spinner:108,pointer:168,marker:168";
     };
     nixpkgs.config.allowUnfree = true;
     home.packages = [
@@ -66,6 +70,10 @@
       script-opts-append = "ytdl_hook-ytdl_path=yt-dlp";
     };
     programs.fish = {
+      shellInit = ''
+       set fish_greeting "";
+       set -gx LESS '-iMRS -x2'
+      '';
       enable = true;
       shellAliases = {
         chubby = "echo 'chubby bobbins!'";
