@@ -40,6 +40,7 @@
       pkgs.fzf
       pkgs.gajim
       pkgs.mpv
+      pkgs.ffmpeg
       pkgs.yt-dlp
       pkgs.clipmenu
       pkgs.firefox
@@ -62,12 +63,6 @@
             style: Regular
           size: 10.0
       '';
-    };
-    programs.mpv.config = {
-      hwdec = "vappi";
-      audio-channels = 2;
-      save-position-on-quit = true;
-      script-opts-append = "ytdl_hook-ytdl_path=yt-dlp";
     };
     programs.fish = {
       shellInit = ''
@@ -171,7 +166,7 @@
   users.users.lemon = {
     isNormalUser = true;
     description = "lemon";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio"];
     packages = with pkgs; [];
   };
 
