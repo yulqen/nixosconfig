@@ -64,6 +64,12 @@
           size: 10.0
       '';
     };
+    programs.mpv = {
+      enable = true;
+      config = {
+        save-position-on-quit = true;
+      };
+    };
     programs.fish = {
       shellInit = ''
        set fish_greeting "";
