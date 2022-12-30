@@ -31,6 +31,7 @@
     };
     nixpkgs.config.allowUnfree = true;
     home.packages = [
+      pkgs.git-annex
       pkgs.tmux
       pkgs.git
       pkgs.fish
