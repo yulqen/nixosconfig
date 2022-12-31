@@ -58,13 +58,14 @@
       };
     };
     programs.fish = {
-      shellInit = ''
-       set fish_greeting "";
-       set -gx LESS '-iMRS -x2'
+       shellInit = ''
+         set fish_greeting "";
+         set -gx LESS '-iMRS -x2'
       '';
       enable = true;
       shellAliases = {
         chubby = "echo 'chubby bobbins!'";
+        et = "emacsclient -nw";
         bud = "cd ~/Documents/Budget/ledger/hledger/";
       };
     };
