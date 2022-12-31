@@ -22,6 +22,7 @@
       pkgs.git
       pkgs.fish
       pkgs.pass
+      pkgs.tor-browser-bundle-bin
       pkgs.spotify
       pkgs.alacritty
       pkgs.fzf
