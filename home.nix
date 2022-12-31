@@ -13,6 +13,10 @@
     };
     nixpkgs.config.allowUnfree = true;
     home.packages = [
+      pkgs.clojure
+      pkgs.clojure-lsp
+      pkgs.leiningen
+      pkgs.clj-kondo
       pkgs.git-annex
       pkgs.tmux
       pkgs.git
@@ -62,6 +66,20 @@
       shellAliases = {
         chubby = "echo 'chubby bobbins!'";
         bud = "cd ~/Documents/Budget/ledger/hledger/";
+      };
+    };
+
+    # XDG desktop entries - org-protocol
+    xdg.desktopEntries = {
+      org-protocol = {
+        name = "org-protocol";
+        comment = "Intercept calls from emacsclient to trigger custom actions";
+        categories = [ "X-Other" ];
+        icon = "emacs";
+        type = "Application";
+        exec = "emacsclient -- %u";
+        terminal = false;
+        mimeType = [ "x-scheme-handler/org-protocol" ];
       };
     };
 
