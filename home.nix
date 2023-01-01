@@ -39,6 +39,10 @@
       pkgs.wget
       pkgs.emacs-gtk
       pkgs.file
+      pkgs.isync
+      pkgs.neomutt
+      pkgs.notmuch
+      pkgs.msmtp
     ];
     # showing an example of how to put a verbatim config file in.
     home.file = {
@@ -51,6 +55,37 @@
             style: Regular
           size: 10.0
       '';
+    };
+    programs.neomutt.enable = true;
+    programs.mbsync.enable = true;
+    programs.msmtp.enable = true;
+    programs.notmuch = {
+      enable = true;
+      hooks = {
+        preNew = "mbsync --all";
+      };
+    };
+    accounts.email.accounts = {
+      fastmail = {
+        address = "matt@matthewlemon.com";
+        primary = true;
+        imap.host = "imap.fastmail.com";
+        msmtp.enable = true;
+        notmuch.enable = true;
+        passwordCommand = "echo $(pass AppPasswords/mbsync_fastmail_may2022)";
+        realName = "Matthew Lemon";
+        smtp = {
+          host = "smtp.fastmail.com";
+        };
+        userName = "mrlemon@mailforce.net";
+        neomutt = {
+          enable = true;
+        };
+        mbsync = {
+          enable = true;
+          create = "maildir";
+        };
+     };
     };
     programs.info.enable = true;
     programs.mpv = {
