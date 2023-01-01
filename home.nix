@@ -52,6 +52,7 @@
           size: 10.0
       '';
     };
+    programs.info.enable = true;
     programs.mpv = {
       enable = true;
       config = {
