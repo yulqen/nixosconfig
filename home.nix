@@ -5,6 +5,7 @@
 
   home-manager.users.lemon = { pkgs, ... }: {
     home.sessionVariables = {
+      EDITOR = "emacsclient -nw";
       LEDGER_FILE = "/home/lemon/Documents/Budget/ledger/hledger/budget.ledger";
       FZF_DEFAULT_COMMAND = "ag --nocolor -g \"\"";
       # FZF_CTRL_T_COMMAND = "${FZF_DEFAULT_COMMAND}";
@@ -56,7 +57,11 @@
           size: 10.0
       '';
     };
-    programs.neomutt.enable = true;
+    programs.neomutt = {
+      enable = true;
+      sort = "reverse-date-received";
+      vimKeys = true;
+    };
     programs.mbsync.enable = true;
     programs.msmtp.enable = true;
     programs.notmuch = {
