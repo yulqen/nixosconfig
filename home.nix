@@ -28,19 +28,7 @@
           size: 10.0
       '';
     };
-    programs.neomutt = {
-      enable = true;
-      sort = "reverse-date-received";
-      vimKeys = true;
-    };
-    programs.mbsync.enable = true;
-    programs.msmtp.enable = true;
-    programs.notmuch = {
-      enable = true;
-      hooks = {
-        preNew = "mbsync --all";
-      };
-    };
+
     programs.info.enable = true;
     programs.mpv = {
       enable = true;
