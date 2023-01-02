@@ -6,7 +6,7 @@
       extraAccounts = {
         fastmail = {
           source = "maildir://~/Maildir/fastmail";
-          outgoing = "smtps+plain://mrlemon%40mailforce.net%40smtp.fastmail.com:465";
+          outgoing = "smtps+plain://mrlemon%40mailforce.net@smtp.fastmail.com:465";
           outgoing-cred-cmd = "echo $(pass AppPasswords/mbsync_fastmail_may2022)";
           copy-to = "Sent";
           from = "Matthew Lemon <matt@matthewlemon.com>";
