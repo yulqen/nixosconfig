@@ -10,7 +10,7 @@ in
   # same duplication program here - ref note in programs.nix
   
   home-manager.users.lemon = { pkgs, ... }: {
-      accounts.email.accounts = {
+    accounts.email.accounts = {
       fastmail = {
         address = "matt@matthewlemon.com";
         signature.text = signaturePersonal;
@@ -32,9 +32,9 @@ in
           create = "maildir";
           expunge = "maildir";
         };
-     };
+      };
     };
-    };
+  };
 }
 
-      
+  
