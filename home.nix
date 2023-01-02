@@ -15,38 +15,7 @@
       FZF_DEFAULT_OPTS = "--color info:108,prompt:109,spinner:108,pointer:168,marker:168";
     };
     nixpkgs.config.allowUnfree = true;
-    home.packages = [
-      pkgs.clojure
-      pkgs.clojure-lsp
-      pkgs.leiningen
-      pkgs.clj-kondo
-      pkgs.git-annex
-      pkgs.tmux
-      pkgs.git
-      pkgs.fish
-      pkgs.pass
-      pkgs.tor-browser-bundle-bin
-      pkgs.spotify
-      pkgs.alacritty
-      pkgs.fzf
-      pkgs.gajim
-      pkgs.mpv
-      pkgs.ffmpeg
-      pkgs.yt-dlp
-      pkgs.clipmenu
-      pkgs.firefox
-      pkgs.gnome.seahorse
-      pkgs.xclip
-      pkgs.hledger
-      pkgs.ledger
-      pkgs.wget
-      pkgs.emacs-gtk
-      pkgs.file
-      pkgs.isync
-      pkgs.neomutt
-      pkgs.notmuch
-      pkgs.msmtp
-    ];
+
     # showing an example of how to put a verbatim config file in.
     home.file = {
       ".config/alacritty/alacritty.yml".text = ''
@@ -71,28 +40,6 @@
       hooks = {
         preNew = "mbsync --all";
       };
-    };
-    accounts.email.accounts = {
-      fastmail = {
-        address = "matt@matthewlemon.com";
-        primary = true;
-        imap.host = "imap.fastmail.com";
-        msmtp.enable = true;
-        notmuch.enable = true;
-        passwordCommand = "echo $(pass AppPasswords/mbsync_fastmail_may2022)";
-        realName = "Matthew Lemon";
-        smtp = {
-          host = "smtp.fastmail.com";
-        };
-        userName = "mrlemon@mailforce.net";
-        neomutt = {
-          enable = true;
-        };
-        mbsync = {
-          enable = true;
-          create = "maildir";
-        };
-     };
     };
     programs.info.enable = true;
     programs.mpv = {
