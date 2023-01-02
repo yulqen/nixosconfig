@@ -3,20 +3,30 @@
   home-manager.users.lemon = {
     programs.aerc = {
       enable = true;
+      extraAccounts = {
+        fastmail = {
+          source = "maildir://~/Maildir/fastmail";
+          outgoing = "smtps+plain://mrlemon%40mailforce.net%40smtp.fastmail.com:465";
+          outgoing-cred-cmd = "echo $(pass AppPasswords/mbsync_fastmail_may2022)";
+          copy-to = "Sent";
+          from = "Matthew Lemon <matt@matthewlemon.com>";
+          editor = "vim";
+          # header-layout = lib.concatStringsSep "," [
+          #   "To|From"
+          #   "Subject"
+          # ];
+        };
+      };
       extraConfig = {
         compose = {
-          editor = "emacsclient -nw";
-          header-layout = lib.concatStringsSep "," [
-            "To|From"
-            "Subject"
-          ];
+          editor = "vim";
           address-book-cmd = "abook";
         };
         filters = {
           "subject,~^\\[PATCH" = "awk -f ${pkgs.aerc}/share/aerc/filters/hldiff";          
           "text/plain" = "awk -f ${pkgs.aerc}/share/aerc/filters/colorize";
           "text/html" = "html";
-        };        
+        };
         general = {
           unsafe-accounts-conf = true;              
         };

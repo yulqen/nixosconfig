@@ -24,16 +24,15 @@ in
           host = "smtp.fastmail.com";
         };
         userName = "mrlemon@mailforce.net";
-        aerc = {
-          enable = true;
-          # extraAccounts = {
-          #   source = "maildir://~/Mail/fastmail";
-          # };
-        };                  
+        # aerc = {
+        #   enable = true;
+        #   # extraAccounts = {
+        #   #   source = "maildir://~/Mail/fastmail";
+        #   # };
+        # };
         neomutt = {
           enable = true;
         };
-
         mbsync = {
           enable = true;
           create = "maildir";
