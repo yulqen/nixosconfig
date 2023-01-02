@@ -19,6 +19,7 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
       clj-kondo
       git-annex
       tmux
+      hugo
       git
       fish
       pass
