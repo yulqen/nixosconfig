@@ -1,5 +1,6 @@
 {
   imports = [
     ./mail
+    ./programs.nix
   ];
 }

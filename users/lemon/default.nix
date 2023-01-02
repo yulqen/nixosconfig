@@ -1,6 +1,10 @@
 { config, options, pkgs, ... }:
 {
-   users.users.lemon = {
+  imports = [
+    <home-manager/nixos>
+  ];
+
+    users.users.lemon = {
     isNormalUser = true;
     description = "lemon";
     extraGroups = [ "networkmanager" "wheel" "audio"];
