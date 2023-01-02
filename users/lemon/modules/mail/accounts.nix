@@ -2,7 +2,6 @@
 
 let
   signaturePersonal = ''
-    --
     Matthew Lemon
   '';
 in
@@ -14,6 +13,7 @@ in
       fastmail = {
         address = "matt@matthewlemon.com";
         signature.text = signaturePersonal;
+        signature.showSignature = "append";
         primary = true;
         imap.host = "imap.fastmail.com";
         msmtp.enable = true;
