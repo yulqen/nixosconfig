@@ -20,7 +20,6 @@
       extraConfig = {
         compose = {
           editor = "vim";
-          address-book-cmd = "abook";
         };
         filters = {
           "subject,~^\\[PATCH" = "awk -f ${pkgs.aerc}/share/aerc/filters/hldiff";          
