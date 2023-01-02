@@ -3,7 +3,6 @@
   home-manager.users.lemon = {
     programs.aerc = {
       enable = true;
-
       extraConfig = {
         compose = {
           editor = "emacsclient -nw";
