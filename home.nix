@@ -1,7 +1,9 @@
 { config, pkgs, ...}:
 
 {
-  imports = [ <home-manager/nixos> ];
+  imports = [ <home-manager/nixos>
+              ./users/lemon/modules
+            ];
 
   home-manager.users.lemon = { pkgs, ... }: {
     home.sessionVariables = {
