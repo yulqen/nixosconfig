@@ -1,6 +1,18 @@
 { config, pkgs, lib, ... }:
 
 let
+  signaturePersonal = ''
+
+    ---
+    Matthew Lemon
+    (email): matt@matthewlemon.com
+  '';
+  signatureYulqen = ''
+
+    ---
+    Matthew Lemon
+    (email): y@yulqen.org
+  '';
   fastmail-source = "maildir://~/Maildir/fastmail";
   fastmail-outgoing = "smtps+plain://mrlemon%40mailforce.net@smtp.fastmail.com:465";
   fastmail-cred-cmd = "echo $(pass AppPasswords/mbsync_fastmail_may2022)";
@@ -17,6 +29,7 @@ in
           outgoing-cred-cmd = fastmail-cred-cmd;
           copy-to = fastmail-copy-to;
           from = "Matthew Lemon <matt@matthewlemon.com>";
+          signature-file = toString (pkgs.writeText "signature-matt-fastmail" signaturePersonal);
         };
         yulqen = {
           source = fastmail-source;
@@ -24,6 +37,7 @@ in
           outgoing-cred-cmd = fastmail-cred-cmd;
           copy-to = fastmail-copy-to;
           from = "Matthew Lemon <y@yulqen.org>";
+          signature-file = toString (pkgs.writeText "signature-matt-fastmail" signatureYulqen);
         };
       };
       extraConfig = {
