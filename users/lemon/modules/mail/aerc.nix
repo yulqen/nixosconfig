@@ -1,15 +1,29 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
 
+let
+  fastmail-source = "maildir://~/Maildir/fastmail";
+  fastmail-outgoing = "smtps+plain://mrlemon%40mailforce.net@smtp.fastmail.com:465";
+  fastmail-cred-cmd = "echo $(pass AppPasswords/mbsync_fastmail_may2022)";
+  fastmail-copy-to = "Sent";
+in
+{
   home-manager.users.lemon = {
     programs.aerc = {
       enable = true;
       extraAccounts = {
         fastmail = {
-          source = "maildir://~/Maildir/fastmail";
-          outgoing = "smtps+plain://mrlemon%40mailforce.net@smtp.fastmail.com:465";
-          outgoing-cred-cmd = "echo $(pass AppPasswords/mbsync_fastmail_may2022)";
-          copy-to = "Sent";
+          source = fastmail-source;
+          outgoing = fastmail-outgoing;
+          outgoing-cred-cmd = fastmail-cred-cmd;
+          copy-to = fastmail-copy-to;
           from = "Matthew Lemon <matt@matthewlemon.com>";
+        };
+        yulqen = {
+          source = fastmail-source;
+          outgoing = fastmail-outgoing;
+          outgoing-cred-cmd = fastmail-cred-cmd;
+          copy-to = fastmail-copy-to;
+          from = "Matthew Lemon <y@yulqen.org>";
         };
       };
       extraConfig = {
