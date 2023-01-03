@@ -5,13 +5,11 @@ let
 
     ---
     Matthew Lemon
-    (email): matt@matthewlemon.com
   '';
   signatureYulqen = ''
 
     ---
     Matthew Lemon
-    (email): y@yulqen.org
   '';
   fastmail-source = "maildir://~/Maildir/fastmail";
   fastmail-outgoing = "smtps+plain://mrlemon%40mailforce.net@smtp.fastmail.com:465";
@@ -25,20 +23,16 @@ in
       enable = true;
       extraAccounts = {
         fastmail = {
+          enable-folders-sort = true;
+          folders-sort = "Inbox,Sent,Archive";
+          default = "Inbox";
+          aliases = "y@yulqen.org";
           source = fastmail-source;
           outgoing = fastmail-outgoing;
           outgoing-cred-cmd = fastmail-cred-cmd;
           copy-to = fastmail-copy-to;
           from = "Matthew Lemon <matt@matthewlemon.com>";
           signature-file = toString (pkgs.writeText "signature-matt-fastmail" signaturePersonal);
-        };
-        yulqen = {
-          source = fastmail-source;
-          outgoing = fastmail-outgoing;
-          outgoing-cred-cmd = fastmail-cred-cmd;
-          copy-to = fastmail-copy-to;
-          from = "Matthew Lemon <y@yulqen.org>";
-          signature-file = toString (pkgs.writeText "signature-matt-fastmail" signatureYulqen);
         };
         notmuch = {
           source = "notmuch://~/Maildir/fastmail/";
