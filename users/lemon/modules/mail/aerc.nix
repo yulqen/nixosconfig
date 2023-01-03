@@ -40,6 +40,11 @@ in
           from = "Matthew Lemon <y@yulqen.org>";
           signature-file = toString (pkgs.writeText "signature-matt-fastmail" signatureYulqen);
         };
+        notmuch = {
+          source = "notmuch://~/Maildir/fastmail/";
+          outgoing = fastmail-outgoing;          
+          from = "Matthew Lemon <matt@matthewlemon.com>";          
+        };
       };
       extraConfig = {
         compose = {
@@ -65,6 +70,7 @@ in
 
         [messages]
         q = :quit<Enter>
+        o = :exec ${./mail-sync.sh}<Enter>;
 
         j = :next<Enter>
         <Down> = :next<Enter>

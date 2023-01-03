@@ -17,7 +17,6 @@ in
         primary = true;
         imap.host = "imap.fastmail.com";
         msmtp.enable = true;
-        notmuch.enable = true;
         passwordCommand = "echo $(pass AppPasswords/mbsync_fastmail_may2022)";
         realName = "Matthew Lemon";
         smtp = {

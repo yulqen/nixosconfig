@@ -14,6 +14,7 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
     home.packages = with pkgs; [
       aerc
       abook
+      alacritty      
       clojure
       clojure-lsp
       leiningen
@@ -26,7 +27,6 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
       pass
       tor-browser-bundle-bin
       spotify
-      alacritty
       fzf
       gajim
       mpv
@@ -42,6 +42,7 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
       emacs-gtk
       file
       isync
+      notmuch
     ];
   };
 }
