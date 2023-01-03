@@ -51,6 +51,7 @@ in
         };
         general = {
           unsafe-accounts-conf = true;
+          pgp-provider = "gpg";
         };
       };
       extraBinds = ''
