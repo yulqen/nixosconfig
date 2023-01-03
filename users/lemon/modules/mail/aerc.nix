@@ -10,11 +10,6 @@
           outgoing-cred-cmd = "echo $(pass AppPasswords/mbsync_fastmail_may2022)";
           copy-to = "Sent";
           from = "Matthew Lemon <matt@matthewlemon.com>";
-          editor = "vim";
-          # header-layout = lib.concatStringsSep "," [
-          #   "To|From"
-          #   "Subject"
-          # ];
         };
       };
       extraConfig = {
@@ -27,7 +22,7 @@
           "text/html" = "html";
         };
         general = {
-          unsafe-accounts-conf = true;              
+          unsafe-accounts-conf = true;
         };
       };
       extraBinds = ''
