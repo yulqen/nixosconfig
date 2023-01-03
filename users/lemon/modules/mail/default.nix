@@ -1,7 +1,7 @@
 {
   imports = [
     ./accounts.nix
-    ./mutt-mbsync.nix
+    ./mbsync.nix
     ./aerc.nix
   ];
 }
