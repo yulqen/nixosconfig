@@ -28,7 +28,7 @@
           size: 10.0
       '';
     };
-
+    programs.ncspot.enable = true;
     programs.info.enable = true;
     programs.mpv = {
       enable = true;
