@@ -20,6 +20,7 @@ let
 in
 {
   home-manager.users.lemon = {
+    programs.abook.enable = true;
     programs.aerc = {
       enable = true;
       extraAccounts = {
@@ -43,6 +44,8 @@ in
       extraConfig = {
         compose = {
           editor = "vim";
+          header-layout = "To|From|cc,Subject";
+          address-book-cmd = "sh -c 'abook --datafile /home/lemon/Documents/sync/.abook/addressbook --mutt-query \"%s\" | tail -n +2'";
         };
         filters = {
           "subject,~^\\[PATCH" = "awk -f ${pkgs.aerc}/share/aerc/filters/hldiff";          
