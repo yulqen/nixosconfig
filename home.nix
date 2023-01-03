@@ -44,6 +44,7 @@
       enable = true;
       shellAliases = {
         chubby = "echo 'chubby bobbins!'";
+        abook = "abook --datafile ~/Documents/sync/.abook/addressbook";
         et = "emacsclient -nw";
         bud = "cd ~/Documents/Budget/ledger/hledger/";
       };

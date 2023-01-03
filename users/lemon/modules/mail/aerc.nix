@@ -41,9 +41,12 @@ in
         };
       };
       extraConfig = {
+        viewer = {
+          header-layout = "To,From,cc,Subject";
+        };
         compose = {
           editor = "vim";
-          header-layout = "To|From|cc,Subject";
+          header-layout = "To,From,cc,Subject";
           address-book-cmd = "sh -c 'abook --datafile /home/lemon/Documents/sync/.abook/addressbook --mutt-query \"%s\" | tail -n +2'";
         };
         filters = {

@@ -14,6 +14,7 @@
         tabstop = 4;
       };
       extraConfig = ''
+        autocmd filetype mail set textwidth=0
         set nocompatible
       '';
     };    
