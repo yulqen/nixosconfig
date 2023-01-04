@@ -10,6 +10,12 @@
       options = "--delete-older-than 7d";
     };
   };
+
+  # emacs as a systemd service
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs-gtk;
+  };
   
   # shell
   users.users.lemon.shell = pkgs.fish;
@@ -20,9 +26,9 @@
   environment.systemPackages = with pkgs; [
     alsa-utils
     vim
+    emacs-gtk
     pavucontrol
     syncthing
-    notmuch.emacs
     notmuch
     gnupg
     pinentry

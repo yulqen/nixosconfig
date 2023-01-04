@@ -22,7 +22,6 @@
     vim
     pavucontrol
     syncthing
-    notmuch.emacs
     notmuch
     gnupg
     pinentry
