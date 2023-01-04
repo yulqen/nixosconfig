@@ -2,24 +2,25 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-
 { config, pkgs, ... }:
 
 {
-
-  # enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./base.nix
     ];
 
+  # enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
+
+  # hostname
+  networking.hostName = "nixos-220"; # Define your hostname.
 
   # Setup keyfile
   boot.initrd.secrets = {
@@ -34,7 +35,6 @@
   boot.initrd.luks.devices."luks-921d7aba-5f10-43f8-bfe7-2be9990bd149".device = "/dev/disk/by-uuid/921d7aba-5f10-43f8-bfe7-2be9990bd149";
   boot.initrd.luks.devices."luks-921d7aba-5f10-43f8-bfe7-2be9990bd149".keyFile = "/crypto_keyfile.bin";
 
-  networking.hostName = "nixos-220"; # Define your hostname.
  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
