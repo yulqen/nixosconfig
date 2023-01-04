@@ -3,8 +3,8 @@
 let 
   mod = "Mod4";
 in {
-  home-manager.users.lemon.xsession.enable = true;
-  home-manager.users.lemon.xsession.windowManager.i3 = {
+  xsession.enable = true;
+  xsession.windowManager.i3 = {
     enable = true;
     config = {
       terminal = "alacritty";

@@ -1,10 +1,6 @@
 
 { config, pkgs, ...}:
 {
-  imports = [ ./vim.nix
-              ./i3.nix
-            ];
-
   # garbage collection
   nix = {
     settings.auto-optimise-store = true;

@@ -1,6 +1,5 @@
 { config, pkgs, ...}: {
   
-  home-manager.users.lemon = {
     programs.vim = {
       plugins = with pkgs.vimPlugins; [
         vim-sensible
@@ -18,5 +17,4 @@
         set nocompatible
       '';
     };    
-  };
 }
