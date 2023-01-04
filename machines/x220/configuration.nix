@@ -2,44 +2,46 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
+
 { config, pkgs, ... }:
 
 {
+  # enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./base.nix
     ];
 
-  # enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  # hostname
-  networking.hostName = "nixos201"; # Define your hostname.
-
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
   };
-
+  
   # Enable grub cryptodisk
   boot.loader.grub.enableCryptodisk=true;
 
-  boot.initrd.luks.devices."luks-8c42aa97-7abc-47b5-bf43-3b0b19ff7c35".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-046eead4-47c7-428b-820f-8ad6f764e239".keyFile = "/crypto_keyfile.bin";
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-fcc09b97-1087-4169-987c-7a15e8ec1bdf".device = "/dev/disk/by-uuid/fcc09b97-1087-4169-987c-7a15e8ec1bdf";
-  boot.initrd.luks.devices."luks-fcc09b97-1087-4169-987c-7a15e8ec1bdf".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-921d7aba-5f10-43f8-bfe7-2be9990bd149".device = "/dev/disk/by-uuid/921d7aba-5f10-43f8-bfe7-2be9990bd149";
+  boot.initrd.luks.devices."luks-921d7aba-5f10-43f8-bfe7-2be9990bd149".keyFile = "/crypto_keyfile.bin";
 
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "nixos-220"; # Define your hostname.
+ # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enable networking
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -58,6 +60,7 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
+
 
   # Configure console keymap
   console.keyMap = "uk";
