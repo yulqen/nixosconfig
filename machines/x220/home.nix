@@ -1,6 +1,9 @@
 { config, options, pkgs, ... }:
 
 {
+
+  imports = [ ../../users/lemon ];
+
   home.sessionVariables = {
     EDITOR = "emacsclient -nw";
     LEDGER_FILE = "/home/lemon/Documents/Budget/ledger/hledger/budget.ledger";
