@@ -1,8 +1,7 @@
 
 { config, pkgs, ...}:
 {
-  imports = [ ./home.nix
-              ./vim.nix
+  imports = [ ./vim.nix
               ./i3.nix
             ];
 

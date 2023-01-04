@@ -1,11 +1,9 @@
 { config, pkgs, ...}:
 
 {
-  imports = [ <home-manager/nixos>
-              ./users/lemon/modules
+  imports = [ ./users/lemon/modules
             ];
-
-  home-manager.users.lemon = { pkgs, ... }: {
+  
     home.sessionVariables = {
       EDITOR = "emacsclient -nw";
       LEDGER_FILE = "/home/lemon/Documents/Budget/ledger/hledger/budget.ledger";
@@ -14,7 +12,8 @@
       # FZF_ALT_C_COMMAND = "${FZF_DEFAULT_COMMAND}";
       FZF_DEFAULT_OPTS = "--color info:108,prompt:109,spinner:108,pointer:168,marker:168";
     };
-    nixpkgs.config.allowUnfree = true;
+    
+    home.stateVersion = "22.11";
 
     # showing an example of how to put a verbatim config file in.
     home.file = {
@@ -103,6 +102,4 @@
         };
       };
     };
-    home.stateVersion = "22.11";
-  };
 }

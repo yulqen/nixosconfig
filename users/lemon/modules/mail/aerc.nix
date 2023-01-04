@@ -17,7 +17,6 @@ let
   fastmail-copy-to = "Sent";
 in
 {
-  home-manager.users.lemon = {
     programs.abook.enable = true;
     programs.aerc = {
       enable = true;
@@ -189,6 +188,4 @@ in
        <C-n> = :next-tab<Enter>
         '';     
     };
-  };
-  
 }

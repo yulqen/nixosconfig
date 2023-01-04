@@ -1,7 +1,7 @@
 { config, options, pkgs, ... }:
 {
   imports = [
-    <home-manager/nixos>
+    ./modules
   ];
 
     users.users.lemon = {
@@ -13,15 +13,5 @@
     initialPassword = "foobar"; # for vm
   };
 
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
-
-  home-manager.users.lemon = { lib, pkgs, ... }: {
-    imports = [ ./modules ];
-
-    config = {
-      home.stateVersion = config.system.stateVersion;
-    };
-  };
 }
 

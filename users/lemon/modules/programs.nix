@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, home-manager, ... }:
 
 {
   /*
@@ -9,8 +9,6 @@
 
 It is because of flakes... See 3.3 in the home-manager manual for example config. This puts home-manager in the user config.
   */
-  home-manager.users.lemon = { lib, pkgs, ... }: {
-    
     home.packages = with pkgs; [
       aerc
       abook
@@ -45,5 +43,4 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
       notmuch
       ncspot
     ];
-  };
 }

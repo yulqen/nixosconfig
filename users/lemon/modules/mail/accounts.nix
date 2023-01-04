@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, home-manager, ... }:
 
 let
   signaturePersonal = ''
@@ -8,7 +8,6 @@ in
 {
   # same duplication program here - ref note in programs.nix
   
-  home-manager.users.lemon = { pkgs, ... }: {
     accounts.email.accounts = {
       fastmail = {
         address = "matt@matthewlemon.com";
@@ -30,7 +29,6 @@ in
         };
       };
     };
-  };
 }
 
   
