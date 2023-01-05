@@ -27,6 +27,7 @@
           size: 10.0
       '';
   };
+  programs.zathura.enable = true;
   programs.ncspot.enable = true;
   programs.info.enable = true;
   programs.mpv = {
