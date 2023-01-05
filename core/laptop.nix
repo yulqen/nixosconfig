@@ -14,7 +14,7 @@
   # emacs as a systemd service
   services.emacs = {
     enable = true;
-    package = pkgs.emacs-gtk;
+    package = pkgs.emacs;
     defaultEditor = true; # this can be overriden by EDTIOR environment variable, so get rid of them.
   };
 
@@ -27,7 +27,7 @@
   environment.systemPackages = with pkgs; [
     alsa-utils
     vim
-    emacs-gtk
+    emacs
     pavucontrol
     syncthing
     notmuch
