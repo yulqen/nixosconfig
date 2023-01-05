@@ -11,6 +11,12 @@
     };
   };
   
+  # emacs as a systemd service
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs-gtk;
+  };
+
   # shell
   users.users.lemon.shell = pkgs.fish;
   environment.shells = with pkgs; [ fish ];
@@ -20,6 +26,7 @@
   environment.systemPackages = with pkgs; [
     alsa-utils
     vim
+    emacs-gtk
     pavucontrol
     syncthing
     notmuch
