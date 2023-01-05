@@ -33,7 +33,6 @@
     gnupg
     pinentry
   ];
-  
 
   # sound
   security.rtkit.enable = true;

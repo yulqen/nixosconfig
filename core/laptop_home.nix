@@ -12,6 +12,23 @@
     # FZF_ALT_C_COMMAND = "${FZF_DEFAULT_COMMAND}";
     FZF_DEFAULT_OPTS = "--color info:108,prompt:109,spinner:108,pointer:168,marker:168";
   };
+
+  # notifications
+  services.dunst = {
+    enable = true;
+    package = pkgs.dunst;
+    settings = {
+      normal = {
+        timeout = 0;        
+      };
+      global = {
+        width = 600;
+        height = 300;
+        transparency = 10;
+        font = "Iosevka 16";
+      };
+    };
+  };
   
   home.stateVersion = "22.11";
 
