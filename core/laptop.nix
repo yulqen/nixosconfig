@@ -15,6 +15,7 @@
   services.emacs = {
     enable = true;
     package = pkgs.emacs-gtk;
+    defaultEditor = true; # this can be overriden by EDTIOR environment variable, so get rid of them.
   };
 
   # shell
