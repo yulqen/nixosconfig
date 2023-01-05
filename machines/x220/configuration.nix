@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./base.nix
+      ../../core/laptop.nix
     ];
 
   # enable flakes

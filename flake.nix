@@ -30,7 +30,7 @@
                         {
                           home-manager.useGlobalPkgs = true;
                           home-manager.useUserPackages = true;
-                          home-manager.users.lemon = import ./machines/x201/home.nix;
+                          home-manager.users.lemon = import ./core/laptop_home.nix;
                         }
                       ];
           };
@@ -41,7 +41,7 @@
                         {
                           home-manager.useGlobalPkgs = true;
                           home-manager.useUserPackages = true;
-                          home-manager.users.lemon = import ./machines/x220/home.nix;
+                          home-manager.users.lemon = import ./core/laptop_home.nix;
                         }
                       ];
           };          

@@ -2,7 +2,7 @@
 
 {
 
-  imports = [ ../../modules ];
+  imports = [ ../modules ];
 
   home.sessionVariables = {
     EDITOR = "emacsclient -nw";
