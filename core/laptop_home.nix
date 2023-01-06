@@ -5,11 +5,20 @@
   imports = [ ../modules ];
 
   home.sessionVariables = {
+
     LEDGER_FILE = "/home/lemon/Documents/Budget/ledger/hledger/budget.ledger";
     FZF_DEFAULT_COMMAND = "ag --nocolor -g \"\"";
     # FZF_CTRL_T_COMMAND = "${FZF_DEFAULT_COMMAND}";
     # FZF_ALT_C_COMMAND = "${FZF_DEFAULT_COMMAND}";
     FZF_DEFAULT_OPTS = "--color info:108,prompt:109,spinner:108,pointer:168,marker:168";
+  };
+
+  #gnupg agent
+  services.gpg-agent = {
+    enable = true;
+    enableFishIntegration = true;
+    enableSshSupport = true;
+    defaultCacheTtl = 28800;
   };
 
   # notifications
