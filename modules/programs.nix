@@ -13,10 +13,10 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
       aerc
       ripgrep
       abook
-      clojure
-      clojure-lsp
-      leiningen
-      clj-kondo
+      # clojure
+      # clojure-lsp
+      # leiningen
+      # clj-kondo
       alacritty
       git-annex
       tmux
