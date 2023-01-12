@@ -13,6 +13,9 @@
     FZF_DEFAULT_OPTS = "--color info:108,prompt:109,spinner:108,pointer:168,marker:168";
   };
 
+  
+  
+
   #gnupg agent
   services.gpg-agent = {
     enable = true;
@@ -51,6 +54,17 @@
             style: Regular
           size: 10.0
       '';
+  };
+  #qutebrowser
+  programs.qutebrowser = {
+    enable = true;
+    searchEngines = {
+      ddg = "https://duckduckgo.com/?q={}";
+      g = "https://www.google.com/search?hl=en&q={}";
+    };
+    settings = {
+      auto_save.session = true;
+    };
   };
   programs.zathura.enable = true;
   programs.ncspot.enable = true;
