@@ -57,6 +57,13 @@
   };
   #qutebrowser
   programs.qutebrowser = {
+    keyBindings = {
+      normal = {
+        ",m" = "spawn mpv {url}";
+        ",p" = "spawn --userscript qute-pass";
+        ",M" = "hint links spawn mpv {hint-url}";
+      };
+    };
     enable = true;
     searchEngines = {
       ddg = "https://duckduckgo.com/?q={}";
@@ -64,6 +71,7 @@
       yt = "https://www.youtube.com/results?search_query={}";
     };
     settings = {
+      content.javascript.enabled = false;
       auto_save.session = true;
       tabs.background = true;
       zoom.default = "110%";
