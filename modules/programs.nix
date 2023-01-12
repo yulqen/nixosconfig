@@ -16,7 +16,7 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
       abook
       # clojure
       # clojure-lsp
-      # leiningen
+      leiningen
       # clj-kondo
       alacritty
       git-annex
