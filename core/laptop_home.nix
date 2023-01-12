@@ -61,9 +61,12 @@
     searchEngines = {
       ddg = "https://duckduckgo.com/?q={}";
       g = "https://www.google.com/search?hl=en&q={}";
+      yt = "https://www.youtube.com/results?search_query={}";
     };
     settings = {
       auto_save.session = true;
+      tabs.background = true;
+      zoom.default = "110%";
     };
   };
   programs.zathura.enable = true;
