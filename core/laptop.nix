@@ -89,7 +89,6 @@
     ];
      displayManager.defaultSession = "none+i3";
     displayManager.gdm.enable = true;
-    layout = "gb";
     xkbVariant = "";
   };
 

@@ -55,6 +55,57 @@
           size: 10.0
       '';
   };
+
+  # tmux
+  programs.tmux = {
+    enable = true;
+    prefix = "C-a";
+    extraConfig = ''
+      bind | split-window -h
+      bind - split-window -v
+      bind -r h select-pane -L
+      bind -r j select-pane -D
+      bind -r k select-pane -U
+      bind -r l select-pane -R
+      bind -r C-h select-window -t :-
+      bind -r C-l select-window -t :+
+      bind -r H resize-pane -L 5
+      bind -r J resize-pane -D 5
+      bind -r K resize-pane -U 5
+      bind -r L resize-pane -R 5
+      set -g mouse on
+      set-window-option -g xterm-keys on
+      bind -n C-Left previous-window
+      bind -n C-Right next-window
+      bind -n C-Up new-window
+      bind -n C-Down confirm-before -p "kill-window #P? (y/n)" kill-window
+      setw -g monitor-activity off
+      set -g visual-activity off
+      set -g status-position bottom
+      set -g status-bg colour234
+      set -g status-fg colour137
+      set -g status-style dim
+      set -g status-left ""
+      set -g status-right "#[fg=colour233,bg=colour241,bold] %d/%m #[fg=colour233,bg=colour245,bold] %H:%M:%S "
+      set -g status-right-length 50
+      set -g status-left-length 20
+
+      setw -g window-status-current-style fg=colour81
+      setw -g window-status-current-style bg=colour238
+      setw -g window-status-current-style bold
+      setw -g window-status-current-format " #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour50]#F "
+      setw -g window-status-style fg=colour138
+      setw -g window-status-style bg=colour235
+      setw -g window-status-style none
+      setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
+
+      setw -g window-status-bell-style bold
+      setw -g window-status-bell-style fg=colour255
+      setw -g window-status-bell-style bg=colour1
+      set -g status-right-length 100
+      setw -g mode-keys vi
+    '';
+  };
   #qutebrowser
   programs.qutebrowser = {
     keyBindings = {
@@ -77,6 +128,15 @@
       zoom.default = "110%";
     };
   };
+  
+  # FOR x1 qutebrowser - find a way to get this in
+  #  programs.qutebrowser = {
+  #  settings = {
+  #   qt.highdpi = true;
+  #   zoom.default = "120%";
+  # };
+  # };
+  
   programs.zathura.enable = true;
   programs.ncspot.enable = true;
   programs.info.enable = true;

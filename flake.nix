@@ -44,6 +44,18 @@
                           home-manager.users.lemon = import ./core/laptop_home.nix;
                         }
                       ];
+          };
+         
+          nixos-x1 = lib.nixosSystem {
+            inherit system;
+            modules = [ ./machines/x1/configuration.nix
+                        home-manager.nixosModules.home-manager
+                        {
+                          home-manager.useGlobalPkgs = true;
+                          home-manager.useUserPackages = true;
+                          home-manager.users.lemon = import ./core/laptop_home.nix;
+                        }
+                      ];
           };          
         };
       };
