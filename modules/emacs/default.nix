@@ -465,7 +465,9 @@
 
 (use-package eglot
   :ensure t
-  :hook (python-mode . eglot-ensure))
+  :hook ((python-mode . eglot-ensure)
+         (clojure-mode . eglot-ensure)
+         (clojurescript-mode . eglot-ensure)))
 
 
 (use-package yasnippet
