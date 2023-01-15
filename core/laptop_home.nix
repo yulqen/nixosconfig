@@ -5,7 +5,7 @@
   imports = [ ../modules ];
 
   home.sessionVariables = {
-
+    BROWSER = "firefox";
     LEDGER_FILE = "/home/lemon/Documents/Budget/ledger/hledger/budget.ledger";
     FZF_DEFAULT_COMMAND = "ag --nocolor -g \"\"";
     # FZF_CTRL_T_COMMAND = "${FZF_DEFAULT_COMMAND}";
