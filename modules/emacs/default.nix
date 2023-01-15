@@ -47,7 +47,7 @@
 (use-package nix-mode
   :mode "\\.nix\\'")
 
-(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 
 ;; settle with the warnings
 (setq warning-minimum-level :emergency)
