@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../core/laptop.nix
+      ./extra.nix
     ];
 
   # enable flakes

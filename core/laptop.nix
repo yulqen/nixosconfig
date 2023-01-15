@@ -11,13 +11,6 @@
     };
   };
   
-  # emacs as a systemd service
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs;
-    defaultEditor = true; # this can be overriden by EDTIOR environment variable, so get rid of them.
-  };
-
   # shell
   users.users.lemon.shell = pkgs.fish;
   environment.shells = with pkgs; [ fish ];

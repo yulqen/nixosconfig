@@ -13,9 +13,6 @@
     FZF_DEFAULT_OPTS = "--color info:108,prompt:109,spinner:108,pointer:168,marker:168";
   };
 
-  
-  
-
   #gnupg agent
   services.gpg-agent = {
     enable = true;
