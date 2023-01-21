@@ -11,6 +11,7 @@
       epkgs.denote
       epkgs.nix-mode
       epkgs.org
+      epkgs.ef-themes
       epkgs.reformatter
       epkgs.pass
       epkgs.vertico
@@ -47,7 +48,7 @@
 (use-package nix-mode
   :mode "\\.nix\\'")
 
-(load-theme 'solarized-dark t)
+(load-theme 'ef-deuteranopia-dark t)
 
 ;; settle with the warnings
 (setq warning-minimum-level :emergency)
