@@ -6,10 +6,11 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };    
+    };
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
   };
 
-  outputs = { self, nixpkgs, home-manager }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
 
     let
       system = "x84-64-linux";
@@ -48,6 +49,7 @@
          
           nixos-x1 = lib.nixosSystem {
             inherit system;
+            specialArgs = inputs;
             modules = [ ./machines/x1/configuration.nix
                         home-manager.nixosModules.home-manager
                         {
