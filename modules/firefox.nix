@@ -53,6 +53,11 @@ in
               name = "NixOS Homepage";
               url = "https://nixos.org/";
             }
+
+            {
+              name = "Home Manager Options Search";
+              url = "https://mipmip.github.io/home-manager-option-search/";
+            }             
             {
               name = "NixOS Wiki";
               url = "https://nixos.wiki/";
@@ -61,6 +66,7 @@ in
         }
       ];
       settings = {
+        "extensions.pocket.enabled" = false;
         "browser.search.region" = "GB";
         "browser.search.isUS" = false;
         "distribution.searchplugins.defaultLocale" = "en-GB";
