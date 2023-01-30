@@ -13,6 +13,7 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
       aerc
       openvpn
       mumble
+      neomutt
       tree
       chromium
       qutebrowser
