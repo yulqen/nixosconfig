@@ -22,6 +22,7 @@ in
           host = "smtp.fastmail.com";
         };
         userName = "mrlemon@mailforce.net";
+        neomutt.enable = true;
         mbsync = {
           enable = true;
           create = "maildir";
