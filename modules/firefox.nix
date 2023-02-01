@@ -50,10 +50,23 @@ in
           name = "Nix sites";
           bookmarks = [
             {
+              name = "Nix Dev";
+              keyword = "nix";
+              url = "https://nix.dev/";
+            }
+            {
+              name = "Nix Language guide";
+              keyword = "nix";
+              url = "https://nixos.org/guides/nix-language.html";
+            }
+            {
+              name = "Nix Package Search";
+              url = "https://search.nixos.org/packages";
+            }
+            {
               name = "NixOS Homepage";
               url = "https://nixos.org/";
             }
-
             {
               name = "Home Manager Options Search";
               url = "https://mipmip.github.io/home-manager-option-search/";
@@ -76,8 +89,12 @@ in
         "dom.security.https_only_mode" = true;
         "identity.fxaccounts.enabled" = false;
         "privacy.trackingprotecton.enabled" = true;
+        "privacy.donottrackheader.enabled" = true;
+        "privacy.globalprivacycontrol.enabled" = true;
+        "reader.color_scheme" = "dark";
         "signon.rememberSignons" = false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+        "browser.aboutConfig.showWarning" = false;
         "privacy.clearOnShutdown.history" = false;
       };
     };
