@@ -80,6 +80,7 @@ in
       ];
       settings = {
         "extensions.pocket.enabled" = false;
+        "browser.newtabpage.enabled" = false;
         "browser.search.region" = "GB";
         "browser.search.isUS" = false;
         "distribution.searchplugins.defaultLocale" = "en-GB";
@@ -96,6 +97,7 @@ in
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.aboutConfig.showWarning" = false;
         "privacy.clearOnShutdown.history" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
       };
     };
   };

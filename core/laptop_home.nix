@@ -6,10 +6,6 @@
 
   home.sessionVariables = {
     LEDGER_FILE = "/home/lemon/Documents/Budget/ledger/hledger/budget.ledger";
-    FZF_DEFAULT_COMMAND = "ag --nocolor -g \"\"";
-    # FZF_CTRL_T_COMMAND = "${FZF_DEFAULT_COMMAND}";
-    # FZF_ALT_C_COMMAND = "${FZF_DEFAULT_COMMAND}";
-    FZF_DEFAULT_OPTS = "--color info:108,prompt:109,spinner:108,pointer:168,marker:168";
   };
 
   #gnupg agent
@@ -56,6 +52,29 @@
   programs.tmux = {
     enable = true;
     prefix = "C-a";
+    plugins = with pkgs; [
+      {
+        plugin = tmuxPlugins.tmux-fzf;
+        extraConfig = ''
+TMUX_FZF_LAUNCH_KEY="C-f"
+'';
+      }
+      tmuxPlugins.cpu
+      {
+        plugin = tmuxPlugins.resurrect;
+        extraConfig = ''
+set -g @resurrect-save 'Q'
+set -g @resurrect-restore 'R'
+'';
+      }
+      {
+        plugin = tmuxPlugins.continuum;
+        extraConfig = ''
+                    set -g @continuum-restore 'on'
+                    set -g @continuum-save-interval '60' # minutes
+                    '';
+      }
+    ];
     extraConfig = ''
       bind | split-window -h
       bind - split-window -v
@@ -132,6 +151,22 @@
   #   zoom.default = "120%";
   # };
   # };
+
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+    tmux.enableShellIntegration = true; # for fzf-tmux (see above
+    colors = {
+      info = "108";
+      prompt = "109";
+      spinner = "108";
+      pointer = "168";
+      marker = "168";
+    };
+    defaultCommand = "ag --nocolor -g \"\"";
+    fileWidgetOptions = [ "--preview 'head {}'" ];
+    historyWidgetOptions = [ "--sort" "--exact" ];
+  };
   
   programs.zathura.enable = true;
   programs.ncspot.enable = true;
