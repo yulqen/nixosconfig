@@ -15,6 +15,8 @@ in
     ];
     profiles.lemon = {
       search.default = "DuckDuckGo";
+      search.force = true;
+      isDefault = true;
       search.engines = {
         "Nix Packages" = {
           urls = [{
