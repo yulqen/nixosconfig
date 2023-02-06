@@ -1,172 +1,487 @@
-{ config, pkgs, ... }: {
-  xdg = {
-    desktopEntries = {
-      neomutt = {
-        name = "Neomutt";
-        genericName = "Email Client";
-        comment = "Read and send emails";
-        exec = "neomutt %U";
-        icon = "mutt";
-        terminal = true;
-        categories = [ "Network" "Email" "ConsoleOnly" ];
-        type = "Application";
-        mimeType = [ "x-scheme-handler/mailto" ];
-      };
-    };
-    mimeApps.defaultApplications = {
-      "x-scheme-handler/mailto" = "neomutt.desktop";
-    };
-  };
-
-  programs.neomutt = {
-    enable = true;
-    vimKeys = true;
-    sidebar = {
-      enable = true;
-      width = 30;
-    };
-    macros = [
+{ programs, pkgs, ... }:
+# from https://github.com/bbommarito/nixos-config/blob/main/mail/neomutt.nix - thanks
+{
+programs =
+  {
+    neomutt =
       {
-        action = "<shell-escape>clear && ${./mail-sync.sh}<enter>";
-        key = "O";
-        map = [ "index" "pager" ];
-      }
-    ];
-    extraConfig = ''
-# Allow forwarding of attachments with emails
-set mime_forward
-set mime_forward_rest
+        binds =
+          [
+            {
+              action = "noop";
+              key = "i";
+              map = [ "index" "pager" ];
+            }
 
-# Basic Options --------------------------------------
-set wait_key = no        # shut up, mutt
-set mbox_type = Maildir  # mailbox type
-set timeout = 3          # idle time before scanning
-set mail_check = 0       # minimum time between scans
-#unset move               # gmail does that
-set delete               # don't ask, just do
-unset confirmappend      # don't ask, just do!
-set quit                 # don't ask, just do!!
-unset mark_old           # read/new is good enough for me
-#set beep_new             # bell on new mails
-set pipe_decode          # strip headers and eval mimes when piping
-set thorough_search      # strip headers and eval mimes before searching
+            {
+              action = "noop";
+              key = "g";
+              map = [ "index" "pager" ];
+            }
 
-# nicer text
-set text_flowed=yes
+            {
+              action = "noop";
+              key = "\\Cf";
+              map = [ "index" ];
+            }
 
-set mail_check_stats
+            {
+              action = "noop";
+              key = "M";
+              map = [ "index" "pager" ];
+            }
 
-# Status Bar -----------------------------------------
-set status_chars  = " *%A"
-set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+            {
+              action = "noop";
+              key = "C";
+              map = [ "index" "pager" ];
+            }
+            {
+              action = "first-entry";
+              key = "gg";
+              map = [ "index" ];
+            }
 
-# Header Options -------------------------------------
-ignore *                                # ignore all headers
-unignore from: to: cc: date: bcc: subject:   # show only these
-unhdr_order *                           # some distros order things by default
-hdr_order from: to: cc: bcc: date: subject:  # and in this order
+            {
+              action = "next-entry";
+              key = "j";
+              map = [ "index" ];
+            }
 
-# Default inbox.
-set spoolfile = "+Inbox"
+            {
+              action = "previous-entry";
+              key = "k";
+              map = [ "index" ];
+            }
 
-# groups
-alternates -group me '^matt@matthewlemon.com$' '^matthew.lemon@gmail.com$' '^matthew.lemon104@mod.gov.uk$'
+            {
+              action = "view-mailcap";
+              key = "<return>";
+              map = [ "attach" ];
+            }
 
-# Other special folders.
-set mbox      = "+Archive"
-set postponed = "+Drafts"
+            {
+              action = "view-mailcap";
+              key = "l";
+              map = [ "attach" ];
+            }
 
-# Index View Options ---------------------------------
-set date_format = "%d-%m-%Y %H:%M "
-set index_format = "%4C [%Z] %B %D %-20.20F %s"
-set sort = threads                         # like gmail
-set sort_aux = reverse-last-date-received  # like gmail
-set uncollapse_jump                        # don't collapse on an unread message
-set sort_re                                # thread based on regex
-set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+            {
+              action = "noop";
+              key = "<space>";
+              map = [ "editor" ];
+            }
 
-# Folder Shortcuts
-macro index Ei '<change-folder>+Inbox<enter>' 'Go to Inbox'
-macro index Ea '<change-folder>+Archive<enter>' 'Go to Archive'
-macro index Es '<change-folder>+Sent<enter>' 'Go to Sent Mail'
+            {
+              action = "last-entry";
+              key = "G";
+              map = [ "index" ];
+            }
 
-# Navigate threads
-bind index { previous-thread
-bind pager { half-up
-bind index } next-thread
-bind pager } half-down
+            {
+              action = "first-entry";
+              key = "gg";
+              map = [ "index" ];
+            }
 
-bind index R        group-reply
-bind index <tab>    sync-mailbox
-bind index <space>  collapse-thread
+            {
+              action = "exit";
+              key = "h";
+              map = [ "pager" "attach" ];
+            }
 
-# Email the sender (not a reply)
-bind index,pager @ compose-to-sender
+            {
+              action = "next-line";
+              key = "j";
+              map = [ "pager" ];
+            }
 
+            {
+              action = "previous-line";
+              key = "k";
+              map = [ "pager" ];
+            }
 
-# toggle new
-bind index \Cn toggle-new
+            {
+              action = "view-attachments";
+              key = "l";
+              map = [ "pager" ];
+            }
 
-# Ctrl-R to mark all as read
-macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+            {
+              action = "delete-message";
+              key = "D";
+              map = [ "index" ];
+            }
 
-# Saner copy/move dialogs
-macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
-macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+            {
+              action = "undelete-message";
+              key = "U";
+              map = [ "index" ];
+            }
 
-# Sidebar Navigation ---------------------------------
-bind index,pager <down>   sidebar-next
-bind index,pager <up>     sidebar-prev
-bind index,pager <right>  sidebar-open
+            {
+              action = "limit";
+              key = "L";
+              map = [ "index" ];
+            }
 
-# Pager View Options ---------------------------------
-set pager_index_lines = 10 # number of index lines to show
-set pager_context = 3      # number of context lines to show
-set pager_stop             # don't go to next message automatically
-set menu_scroll            # scroll in menus
-set tilde                  # show tildes like in vim
-unset markers              # no ugly plus signs
+            {
+              action = "noop";
+              key = "j";
+              map = [ "index" ];
+            }
 
-set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
-alternative_order text/plain text/enriched text/html
+            {
+              action = "display-message";
+              key = "l";
+              map = [ "index" ];
+            }
 
-# Pager Key Bindings ---------------------------------
-bind pager k  previous-line
-bind pager j  next-line
-#bind pager gg top
-bind pager G  bottom
-bind pager R  group-reply
+            {
+              action = "tag-entry";
+              key = "<space>";
+              map = [ "index" "query" ];
+            }
 
-# Compose View Options -------------------------------
-set realname = "Matthew Lemon"       # who am i?
-set envelope_from                    # which from?
-set sig_dashes                       # dashes before sig
-set edit_headers                     # show headers when composing
-set fast_reply                       # skip to compose when replying
-set askcc                            # ask for CC:
-set fcc_attach                       # save attachments with the body
-unset mime_forward                   # forward attachments as part of body
-set forward_format = "Fwd: %s"       # format of subject when forwarding
-set forward_decode                   # decode when forwarding
-set attribution = "On %d, %n wrote:" # format of quoting header
-set reply_to                         # reply to Reply to: field
-set reverse_name                     # reply as whomever it was to
-set include                          # include message in replies
-set forward_quote                    # include message in forwards
+            {
+              action = "view-raw-message";
+              key = "H";
+              map = [ "index" "pager" ];
+            }
 
-set editor = "emacsclient -t %s"
+            {
+              action = "select-entry";
+              key = "l";
+              map = [ "browser" ];
+            }
 
-set from = "matt@matthewlemon.com"
+            {
+              action = "top-page";
+              key = "gg";
+              map = [ "browser" ];
+            }
 
-set record = "+Sent"
+            {
+              action = "bottom-page";
+              key = "G";
+              map = [ "browser" ];
+            }
 
-bind compose p postpone-message
-bind index p recall-message
+            {
+              action = "top";
+              key = "gg";
+              map = [ "pager" ];
+            }
 
-# MAILCAP
-auto_view text/html
+            {
+              action = "bottom";
+              key = "G";
+              map = [ "pager" ];
+            }
 
-set virtual_spoolfile=yes
-    '';
+            {
+              action = "half-down";
+              key = "d";
+              map = [ "index" "pager" "browser" ];
+            }
+
+            {
+              action = "half-up";
+              key = "u";
+              map = [ "index" "pager" "browser" ];
+            }
+
+            {
+              action = "sync-mailbox";
+              key = "S";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "group-reply";
+              key = "R";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "complete-query";
+              key = "<Tab>";
+              map = [ "editor" ];
+            }
+
+            {
+              action = "sidebar-prev";
+              key = "\\Ck";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "sidebar-next";
+              key = "\\Cj";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "sidebar-open";
+              key = "\\Co";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "sidebar-prev-new";
+              key = "\\Cp";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "sidebar-next-new";
+              key = "\\Cn";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "sidebar-toggle-visible";
+              key = "B";
+              map = [ "index" "pager" ];
+            }
+          ];
+
+        enable = true;
+
+        extraConfig =
+          ''
+            set rfc2047_parameters = yes
+            set sleep_time = 0		
+            set markers = no	
+            set mark_old = no
+            set mime_forward = yes
+            set wait_key = no	
+            set fast_reply
+            set fcc_attach
+            set forward_format = "Fwd: %s"
+            set forward_quote
+            set reverse_name
+            set include	
+            set mail_check=60            
+            auto_view text/html		
+            auto_view application/pgp-encrypted
+            set sidebar_next_new_wrap = yes
+            set mail_check_stats
+
+            # Default index colors:
+            color index yellow default '.*'
+            color index_author red default '.*'
+            color index_number blue default
+            color index_subject cyan default '.*'
+
+            # New mail is boldened:
+            color index brightyellow black "~N"
+            color index_author brightred black "~N"
+            color index_subject brightcyan black "~N"
+
+            # Tagged mail is highlighted:
+            color index brightyellow blue "~T"
+            color index_author brightred blue "~T"
+            color index_subject brightcyan blue "~T"
+
+            # Other colors and aesthetic settings:
+            mono bold bold
+            mono underline underline
+            mono indicator reverse
+            mono error bold
+            color normal default default
+            color indicator brightblack white
+            color sidebar_highlight red default
+            color sidebar_divider brightblack black
+            color sidebar_flagged red black
+            color sidebar_new green black
+            color normal brightyellow default
+            color error red default
+            color tilde black default
+            color message cyan default
+            color markers red white
+            color attachment white default
+            color search brightmagenta default
+            color status brightyellow black
+            color hdrdefault brightgreen default
+            color quoted green default
+            color quoted1 blue default
+            color quoted2 cyan default
+            color quoted3 yellow default
+            color quoted4 red default
+            color quoted5 brightred default
+            color signature brightgreen default
+            color bold black default
+            color underline black default
+            color normal default default
+
+            # Regex highlighting:
+            color header brightmagenta default "^From"
+            color header brightcyan default "^Subject"
+            color header brightwhite default "^(CC|BCC)"
+            color header blue default ".*"
+            color body brightred default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
+            color body brightblue default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
+            color body green default "\`[^\`]*\`" # Green text between ` and `
+            color body brightblue default "^# \.*" # Headings as bold blue
+            color body brightcyan default "^## \.*" # Subheadings as bold cyan
+            color body brightgreen default "^### \.*" # Subsubheadings as bold green
+            color body yellow default "^(\t| )*(-|\\*) \.*" # List items as yellow
+            color body brightcyan default "[;:][-o][)/(|]" # emoticons
+            color body brightcyan default "[;:][)(|]" # emoticons
+            color body brightcyan default "[ ][*][^*]*[*][ ]?" # more emoticon?
+            color body brightcyan default "[ ]?[*][^*]*[*][ ]" # more emoticon?
+            color body red default "(BAD signature)"
+            color body cyan default "(Good signature)"
+            color body brightblack default "^gpg: Good signature .*"
+            color body brightyellow default "^gpg: "
+            color body brightyellow red "^gpg: BAD signature from.*"
+            mono body bold "^gpg: Good signature"
+            mono body bold "^gpg: BAD signature from.*"
+            color body red default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+          '';
+
+        macros =
+          [
+            {
+              action = "<shell-escape>${pkgs.isync}/bin/mbsync -a<enter>";
+              key = "O";
+              map = [ "index" ];
+            }
+
+            {
+              action = "<change-dir><kill-line>..<enter>";
+              key = "h";
+              map = [ "browser" ];
+            }
+
+            {
+              action = ";<save-message>=Inbox<enter>";
+              key = "Mi";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = ";<copy-message>=Inbox<enter>";
+              key = "Ci";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "<change-folder>=Inbox<enter>";
+              key = "gi";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "<change-folder>=Drafts<enter>";
+              key = "gd";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = ";<save-message>=Drafts<enter>";
+              key = "Md";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "<copy-message>=Drafts<enter>";
+              key = "Cd";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "<change-folder>=Spam<enter>";
+              key = "gj";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = ";<save-message>=Spam<enter>";
+              key = "Mj";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "<copy-message>=Spam<enter>";
+              key = "Cj";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "<change-folder>=Trash<enter>";
+              key = "gt";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = ";<save-message>=Trash<enter>";
+              key = "Mt";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = ";<copy-message>=Trash<enter>";
+              key = "Ct";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "<change-folder>=Sent<enter>";
+              key = "gs";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = ";<save-message>=Sent<enter>";
+              key = "Ms";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = ";<copy-message>=Sent<enter>";
+              key = "Cs";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = "<change-folder>=Archive<enter>";
+              key = "ga";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = ";<save-message>=Archive<enter>";
+              key = "Ma";
+              map = [ "index" "pager" ];
+            }
+
+            {
+              action = ";<copy-message>=Archive<enter>";
+              key = "Ca";
+              map = [ "index" "pager" ];
+            }
+          ];
+
+        settings =
+          {
+            date_format = "\"%y/%m/%d %I:%M%p\"";
+            index_format = "\"%2C %Z %?X?A& ? %D %-15.15F %s (%-4.4c)\"";
+            send_charset = "us-ascii:utf-8";
+          };
+
+        sidebar =
+          {
+            enable = true;
+            format = "%D%?F? [%F]?%* %?N?%N/? %?S?%S?";
+            shortPath = true;
+            width = 20;
+          };
+
+        sort = "reverse-date";
+      };
   };
 }
+

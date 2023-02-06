@@ -9,8 +9,14 @@ in
   # same duplication program here - ref note in programs.nix
   
     accounts.email.accounts = {
-      fastmail = {
+      fastmail = rec {
         address = "matt@matthewlemon.com";
+        folders  = {
+          inbox = "Inbox";
+          drafts = "Drafts";
+          sent = "Sent";
+          trash = "Trash";
+        };
         signature.text = signaturePersonal;
         signature.showSignature = "append";
         primary = true;
@@ -22,11 +28,20 @@ in
           host = "smtp.fastmail.com";
         };
         userName = "mrlemon@mailforce.net";
-        neomutt.enable = true;
+        neomutt = {
+          enable = true;
+          extraMailboxes = [
+            "Archive"
+            "Drafts"
+            "Sent"
+            "Spam"
+            "Trash"
+          ];
+        };
         mbsync = {
           enable = true;
           create = "maildir";
-          expunge = "maildir";
+          expunge = "both";
         };
       };
     };

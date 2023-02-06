@@ -48,6 +48,37 @@
       '';
   };
 
+  # mailcap
+  home.file = {
+    ".mailcap" = {
+      target = ".mailcap";
+      text = ''
+# Images
+image/jpg; ~/.mutt/view_attachment.sh %s jpg feh
+image/jpeg; ~/.mutt/view_attachment.sh %s jpg feh
+image/pjpeg; ~/.mutt/view_attachment.sh %s jpg feh
+image/png; ~/.mutt/view_attachment.sh %s png feh
+image/gif; ~/.mutt/view_attachment.sh %s gif feh
+#
+# patches
+text/x-patch; vimdiff '%s'; needsterminal
+
+# PDFs
+application/pdf; ~/.mutt/view_attachment.sh %s pdf zathura
+
+# HTML
+#text/html; ~/.mutt/view_attachment.sh %s html w3m # try different
+# text/html; w3m %s; nametemplate=%s.html
+# text/html; w3m -dump %s; nametemplate=%s.html; copiousoutput
+# text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput
+text/html; firefox %s; nametemplate=%s.html
+
+# Plain Text
+text/plain; cat; copiousoutput; edit=$VISUAL %s 
+'';
+    };
+  };
+
   # tmux
   programs.tmux = {
     enable = true;
