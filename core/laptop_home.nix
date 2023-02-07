@@ -152,6 +152,16 @@ set -g @resurrect-restore 'R'
       setw -g mode-keys vi
     '';
   };
+
+  #password-store (unix pass)
+  programs.password-store = {
+    package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
+    enable = true;
+    settings = {
+      PASSWORD_STORE_DIR = "/home/lemon/.password-store";
+      PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
+    };
+  };
   #qutebrowser
   programs.qutebrowser = {
     keyBindings = {
@@ -210,8 +220,9 @@ set -g @resurrect-restore 'R'
   };
   programs.fish = {
     shellInit = ''
-         set fish_greeting "";
+         set fish_greeting ""
          set -gx LESS '-iMRS -x2'
+         source ${pkgs.pass}/share/fish/vendor_completions.d/pass.fish
       '';
     enable = true;
     shellAliases = {
