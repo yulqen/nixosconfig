@@ -69,6 +69,10 @@ in
               url = "https://nixos.org/";
             }
             {
+              name = "Rugby Streams";
+              url = "https://watch.cricfree.io/category/rugby";
+            }
+            {
               name = "Home Manager Options Search";
               url = "https://mipmip.github.io/home-manager-option-search/";
             }             
