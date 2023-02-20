@@ -48,6 +48,14 @@ in
           url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
         }
         {
+          name = "Rugby Streams";
+          url = "https://watch.cricfree.io/category/rugby";
+        }
+        {
+          name = "Antinet Academic Disciplines";
+          url = "https://scottscheper.com/vanbillemont/";
+        }
+        {
           name = "Nix sites";
           bookmarks = [
             {
@@ -67,10 +75,6 @@ in
             {
               name = "NixOS Homepage";
               url = "https://nixos.org/";
-            }
-            {
-              name = "Rugby Streams";
-              url = "https://watch.cricfree.io/category/rugby";
             }
             {
               name = "Home Manager Options Search";
