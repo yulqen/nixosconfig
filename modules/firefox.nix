@@ -53,7 +53,7 @@ in
         }
         {
           name = "Antinet Academic Disciplines";
-          url = "https://scottscheper.com/vanbillemont/";
+          url = "https://en.m.wikipedia.org/wiki/Outline_of_academic_disciplines#";
         }
         {
           name = "Nix sites";
