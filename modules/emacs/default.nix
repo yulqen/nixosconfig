@@ -44,7 +44,7 @@
  services.emacs = {
    enable = true;
    client.enable = true;
-   defaultEditor = true;
+   defaultEditor = false; # we currently want vim!
    socketActivation.enable = true;
  };
 }

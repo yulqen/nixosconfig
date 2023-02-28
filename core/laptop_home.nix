@@ -6,6 +6,7 @@
 
   home.sessionVariables = {
     LEDGER_FILE = "/home/lemon/Documents/Budget/ledger/hledger/budget.ledger";
+    EDITOR = "vim";
   };
 
   #gnupg agent
