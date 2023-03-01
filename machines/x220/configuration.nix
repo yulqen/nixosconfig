@@ -67,6 +67,9 @@
   # Configure console keymap
   console.keyMap = "uk";
 
+  # To install logseq
+  nixpkgs.config.permittedInsecurePackages = [ "electron-19.0.7" ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
