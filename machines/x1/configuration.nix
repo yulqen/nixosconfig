@@ -57,6 +57,10 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
+  # To install logseq
+  nixpkgs.config.permittedInsecurePackages = [ "electron-19.0.7" ];
+
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lemon = {
     isNormalUser = true;
