@@ -9,9 +9,13 @@
 
 It is because of flakes... See 3.3 in the home-manager manual for example config. This puts home-manager in the user config.
   */
-    home.packages = with pkgs; [
+  home.packages = with pkgs; [
+#      (jetbrains.pycharm-professional.overrideAttrs (oldAttrs: {
+#        version = "2021.3.3";
+#      }))
       aerc
       feh
+      jdk
       openvpn
       logseq
       mumble
