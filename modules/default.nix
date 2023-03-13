@@ -6,5 +6,6 @@
     ./i3
     ./vim
     ./emacs
+    ./scripts
   ];
 }

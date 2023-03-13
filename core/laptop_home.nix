@@ -9,9 +9,9 @@
     EDITOR = "vim";
   };
 
-  home.sessionPath = [
-    "$HOME/bin"
-  ];
+  # home.sessionPath = [
+  #   "$HOME/bin"
+  # ];
 
   #gnupg agent
   services.gpg-agent = {
