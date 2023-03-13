@@ -1,0 +1,313 @@
+# [Created by task 2.5.1 5/22/2016 09:24:00]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+#
+# CALENDAR
+calendar.details=full
+calendar.holidays=sparse
+
+editor=vim
+
+default.project=Inbox
+
+#verbose=1
+verbose=header,footnote,label,new-id,affected,edit,special,project
+
+#
+#
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+#
+# HOLIDAYS
+#include /usr/share/doc/task/rc/holidays.en-GB.rc
+#include /usr/share/taskwarrior/holidays.en-GB.rc
+holiday.easter22.name=Easter 2022
+holiday.easter22.start=2022-04-09
+holiday.easter22.end=2022-04-12
+
+# Files
+data.location=~/.task
+
+
+# calendar
+weekstart=Monday
+
+# Color theme (uncomment one to use)
+#include /usr/local/share/doc/taskwarrior/rc/light-16.theme
+#include /usr/local/share/doc/taskwarrior/rc/light-256.theme
+#include /usr/share/taskwarrior/dark-16.theme
+#include /usr/share/doc/task/rc/dark-256.theme
+#include /usr/share/doc/task/rc/dark-red-256.theme
+#include /usr/share/taskwarrior/dark-red-256.theme
+#include /usr/share/taskwarrior/dark-green-256.theme
+#include /usr/share/taskwarrior/dark-blue-256.theme
+#include /usr/share/taskwarrior/dark-violets-256.theme
+#include /usr/share/taskwarrior/dark-yellow-green.theme
+#include /usr/share/taskwarrior/dark-gray-256.theme
+#include /usr/share/taskwarrior/dark-gray-blue-256.theme
+#include /usr/share/taskwarrior/solarized-dark-256.theme
+#include /usr/share/doc/task/rc/solarized-light-256.theme
+#include /usr/local/share/doc/taskwarrior/rc/no-color.theme
+#include /home/lemon/.task/solarized-16.theme
+#include /home/lemon/.task/solarized-dark-256.theme
+#
+# colour
+color.burndown.done=black on green
+color.burndown.pending=black on rgb510
+color.burndown.started=black on yellow
+color.calendar.due.today=on red
+color.calendar.overdue=bold red
+color.calendar.today=blue
+color.calendar.due=cyan
+color.blocked=underline grey10 on grey3
+color.blocking=color5
+color.due=
+color.tagged=
+color.tag.waiting=blue
+color.tag.next=cyan
+color=on
+color.project.Inbox=black on cyan
+color.alternate=on rgb253
+
+# Task server - essential config!
+taskd.certificate=\/home\/lemon\/.config/task\/Matthew_Lemon.cert.pem
+taskd.key=\/home\/lemon\/.config/task\/Matthew_Lemon.key.pem
+taskd.ca=\/home\/lemon\/.config/task\/ca.cert.pem
+taskd.server=16693433.xyz:53589
+#taskd.trust=ignore hostname
+#taskd.credentials=Public\/matt lemon\/65ed83f1-a2ec-48d2-ad74-9625cc58b030
+#taskd.credentials=Public\/Matthew Lemon\/bb8f1075-3435-452a-ad98-a5da868abbaf
+taskd.credentials=Public\/Matthew Lemon\/51f50856-8333-445e-9c81-273df1ff148a
+
+# Tasksh report stuff
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-1week ) and ( +PENDING or +WAITING )
+
+# Inbox report
+report.in.columns           = id,description
+report.in.description       = Inbox
+report.in.filter            = status:pending limit:page (+in)
+report.in.labels            = ID,Description
+
+# changing urgency of priorities
+urgency.uda.priority.L.coefficient=-1.8
+
+# some UDAs for me
+urgency.user.tag.trivial.coefficient=-5.5
+urgency.user.tag.bug.coefficient=+1.5
+urgency.user.tag.reference.coefficient=-3.2
+urgency.user.tag.idea.coefficient=-3.0
+urgency.user.project.h.chore.coefficient=-3.0
+urgency.user.project.h.admin.coefficient=-0.5
+urgency.user.project.h.buy.coefficient=-4.0
+urgency.user.project.h.diy.coefficient=-5.0
+urgency.user.project=-0.0
+urgency.user.tag.link.coefficient=-5.0
+urgency.user.tag.idea.coefficient=-5.0
+urgency.user.tag.home.coefficient=+1.8
+urgency.user.tag.waiting.coefficient=-2.0
+# UDA for bash script (inspection_planning.sh)
+uda.wb.type=date
+uda.wb.label=Week Beginning
+# killlist is everything that should be removed - bottom
+urgency.user.tag.killlist.coefficient=-5.1
+
+# F*ck annotations having any effect on urgency!
+urgency.annotations.coefficient=0
+
+# Changing coefficients
+#urgency.annotations.coefficient=0.5
+urgency.tags.coefficient=0
+urgency.blocking.coefficient=+2.0
+urgency.due.coefficient=1.1
+
+#urgency.project.coefficient=1
+#urgency.age.coefficient=1
+#urgency.due.coefficient=6.0
+#urgency.project.coefficnent=1.0
+
+# Colours
+#color.project.code.dbasik=green
+#color.tag.next=black on bright yellow
+color.tag.killlist=rgb104 on black
+#color.due.today=red on yellow
+#color.overdue=bold red
+##color.active=bold yellow
+#color.calendar.weekend=bold
+#color.scheduled=bold magenta
+#color.tag.dft=white on rgb100
+#color.tag.prep=rgb150 on rgb020
+color.alternate=
+#color.tag.bug=red on cyan
+#rule.color.merge=no
+
+# 2022 HOLIDAYS
+holiday.en-nyd.name=New Year's Day BH
+holiday.en-nyd.date=20220103
+holiday.en-gf.name=Good Friday
+holiday.en-gf.date=goodfriday
+holiday.en-es.name=Easter Sunday
+holiday.en-es.date=easter
+holiday.en-em.name=Easter Monday
+holiday.en-em.date=eastermonday
+#holiday.en-GB4.name=Early May Bank Holiday
+#holiday.en-GB4.date=20190506
+#holiday.en-GB5.name=Spring Bank Holiday
+#holiday.en-GB5.date=20190527
+#holiday.en-GB6.name=August Bank Holiday
+#holiday.en-GB6.date=20190826
+#holiday.en-GB7.name=Christmas Day
+#holiday.en-GB7.date=20191225
+#holiday.en-GB8.name=Boxing Day
+#holiday.en-GB8.date=20191226
+#holiday.en-GB9.name=New Year's Day
+#holiday.en-GB9.date=20200101
+
+# next report ("task")
+
+# Don't ask for confirmation
+confirmation=no
+
+# RECURRANCE MUST BE ONE FOR ONE MACHINE
+recurrence=on
+recurrence.limit=1
+ 
+ # Context
+context.work=project:w
+context.work.write=project:Inbox
+context.work.read=(project:w or project:Inbox)
+
+context.home=project:h
+context.home.write=project:Inbox
+context.home.read=(project:h or project:Inbox)
+# context.code=project:code
+# context.work=-code +dft
+# context.nowork=-dft
+context.nocode=project.not:code
+# context.home=(project.not:code) -dft
+
+
+# REPORTS
+report.waiting.columns=id,start.active,entry.age,depends.indicator,priority,project,tags,recur.indicator,wait,wait.remaining,scheduled,due,until,description.count
+
+# basic for putting on my own web site
+report.ml_basic.columns=due,description.count
+report.ml_basic.description="Description-only for putting on my own site"
+report.ml_basic.filter=status:pending
+report.ml_basic.sort=due,urgency
+
+# Due or scheduled today
+report.ml_due_or_scheduled_today.columns=id,entry.age,depends,priority,project,tags.count,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.ml_due_or_scheduled_today.description="Due or scheduled today"
+report.ml_due_or_scheduled_today.filter=(due:today or scheduled:today) and status:pending
+report.ml_due_or_scheduled_today.sort=due,urgency
+#
+# Due or scheduled tomorrow
+report.ml_due_or_scheduled_tomorrow.columns=id,entry.age,depends,priority,project,tags.count,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.ml_due_or_scheduled_tomorrow.description="Due or scheduled tomorrow"
+report.ml_due_or_scheduled_tomorrow.filter=(due.is:tomorrow or scheduled.is:tomorrow) and status:pending
+report.ml_due_or_scheduled_tomorrow.sort=due,urgency
+
+# Due within 5 days, including waiting
+report.ml_due_within_5_days.columns=id,entry.age,depends,priority,project,tags.count,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.ml_due_within_5_days.description="Due within 5 days, including waiting"
+report.ml_due_within_5_days.filter=(+WAITING and (due.before:today+5days)) or (status:pending) and (due.before:today+5days)
+report.ml_due_within_5_days.sort=due,urgency
+
+
+# Report all
+report.all.column=id,status.short,uuid.short,start.active,entry.age,end.age,depends.indicator,priority,project.parent,tags.count,recur.indicator,wait.remaining,scheduled.remaining,due,until,remaining,description
+report.all.labels=ID,St,UUID,A,Age,Done,D,P,Project,Tags,R,Wait,Sch,Due,Until,Description
+report.all.description="All Tasks (amended)"
+report.all.sort=entry-
+
+# how to filter out a project from next - but this also means you can't filter
+# it at all
+#report.next.columns=id,start.age,entry.age,depends,priority,project,tags.count,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+#report.next.filter=status:pending and (+next or scheduled.before:today or due.before:today or scheduled.today or due.today)
+#report.next.filter=project.not:code.bcompiler status:pending limit:page
+
+# Next/default
+report.next.description="Next"
+report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.formatted,due.relative,until.remaining,description.truncated_count,urgency
+report.next.filter=status:pending limit:page -idea -killlist project.not:h.buy
+
+# mlscheduled
+report.ml_scheduled.description='Modified list of scheduled tasks'
+report.ml_scheduled.columns=id,project.indented,tags.count,scheduled,due,description.count,priority,urgency
+report.ml_scheduled.labels=ID,Project,Tags,Scheduled,Due,Description,Priority,Urgency
+report.ml_scheduled.sort=scheduled+/,priority-
+report.ml_scheduled.filter=status:pending and +SCHEDULED and -BLOCKED
+
+# inspection_prep
+report.ml_inspection_prep.description="List of all tasks related to inspection planning"
+report.ml_inspection_prep.columns=id,project.indented,description.count,scheduled,due
+report.ml_inspection_prep.labels=ID,Project,Task,Scheduled,Due
+report.ml_inspection_prep.filter=+inspection -inspection_followup status:pending
+report.ml_inspection_prep.sort=project+/,due+,scheduled+
+
+# inspection_followup
+report.ml_inspection_followup.description="List of all tasks related to inspection follow-up"
+report.ml_inspection_followup.columns=id,project.indented,description.count,scheduled,due
+report.ml_inspection_followup.labels=ID,Project,Task,Scheduled,Due
+report.ml_inspection_followup.filter=+inspection_followup status:pending
+
+# upcoming
+report.ml_upcoming.description=Pending and Waiting coming up
+report.ml_upcoming.columns=id,status,wait.remaining,entry,tags,scheduled,due,description.count
+report.ml_upcoming.labels=ID,Status,Wait,Age,Tags,Sched,Due,Description
+report.ml_upcoming.sort=status+,wait+,scheduled+,due+
+report.ml_upcoming.filter=status:pending
+
+# nextmonth
+report.ml_nextmonth.description=Next month
+report.ml_nextmonth.columns=id,status,wait.remaining,entry,tags,scheduled,due,description.count
+report.ml_nextmonth.labels=ID,Status,Wait,Age,Tags,Sched,Due,Description
+report.ml_nextmonth.sort=status+,wait+,scheduled+,due+
+report.ml_nextmonth.filter=scheduled.after:yesterday and scheduled.before:4weeks
+#context=work
+
+# completed in last week
+report.ml_comp_lastweek.description=Tasks completed in the last week
+report.ml_comp_lastweek.columns=uuid.short,project.full,description.combined,end.relative
+report.ml_comp_lastweek.labels=UUID,Project,Task,Completed
+report.ml_comp_lastweek.sort=end-
+report.ml_comp_lastweek.filter=end.after:today-7day
+
+# completed in last month
+report.ml_comp_lastmonth.description=Tasks completed in the last month
+report.ml_comp_lastmonth.columns=uuid.short,project.full,description.combined,end.relative
+report.ml_comp_lastmonth.labels=UUID,Project,Task,Completed
+report.ml_comp_lastmonth.sort=end-
+report.ml_comp_lastmonth.filter=end.after:today-31day
+
+# deleted in the last month
+report.ml_deleted_last_month.description=Tasks deleted in last month
+report.ml_deleted_last_month.columns=status.short,uuid.short,project.full,tags.list,description.count,end.formatted
+report.ml_deleted_last_month.labels=Status,UUID,Project,Tags,Description,Deleted
+report.ml_deleted_last_month.sort=end-
+report.ml_deleted_last_month.filter=end.after:today-30day status:deleted
+
+
+# all projects used
+#  THIS IS THE COMMAND THAT WORKS: task rc.list.all.projects=1 projects
+# BUT DOESN'T WORK HERE - NOT TRIED TOO HARD
+#report.ml_all_projects_used.description=All projects
+#report.ml_all_projects_used.columns=project.full
+#report.ml_all_projects_used.labels=Project
+#report.ml_all_projects_used.sort=project+
+#report.ml_all_projects_used.filter=rc.list.all.projects=1 projects
+
+# regex on
+regex=on
+
+news.version=2.6.0
