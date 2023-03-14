@@ -84,6 +84,10 @@ text/plain; cat; copiousoutput; edit=$VISUAL %s
     };
   };
 
+  home.file = {
+    ".taskopenrc".text = builtins.readFile ../modules/taskopen/taskopenrc;
+  };
+
   # tmux
   programs.tmux = {
     enable = true;
