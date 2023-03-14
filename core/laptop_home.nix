@@ -228,6 +228,7 @@ set -g @resurrect-restore 'R'
          set fish_greeting ""
          set -gx LESS '-iMRS -x2'
          source ${pkgs.pass}/share/fish/vendor_completions.d/pass.fish
+         source ${pkgs.taskwarrior}/share/fish/vendor_completions.d/task.fish
       '';
     enable = true;
     shellAliases = {
