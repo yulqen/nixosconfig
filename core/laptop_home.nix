@@ -248,6 +248,7 @@ set -g @resurrect-restore 'R'
       tkilled = "task +killlist list";
       ttagged = "task tags.any: list";
       tuntagged = "task tags.none: list";
+      ttoday = "task ml_due_or_scheduled_today";
     };
   };
 
