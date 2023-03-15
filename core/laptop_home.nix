@@ -243,6 +243,11 @@ set -g @resurrect-restore 'R'
       et = "emacsclient -nw";
       bud = "cd ~/Documents/Budget/ledger/hledger/";
       getip = "curl ifconfig.me";
+      tprojects = "task rc.list.all.projects=1 projects";
+      ttags = "task rc.list.all.tags=1 tags";
+      tkilled = "task +killlist list";
+      ttagged = "task tags.any: list";
+      tuntagged = "task tags.none: list";
     };
   };
 
