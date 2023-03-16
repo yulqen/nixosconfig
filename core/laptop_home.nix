@@ -49,7 +49,7 @@
           normal:
             family: Iosevka
             style: Regular
-          size: 10.0
+          size: 12.0
       '';
   };
 
