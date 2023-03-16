@@ -123,7 +123,9 @@ set equalalways
 set showmode
 set nobackup
 set listchars=tab:»→,trail:␣
-set grepprg=/usr/bin/ag
+if executable('rg')
+	set grepprg=rg\ --color=never\ --vimgrep
+endif
 
 " i don't bother with folding, but it's here if i need it.
 if has('folding')
@@ -387,6 +389,17 @@ let g:fzf_colors =
   nnoremap <silent> <leader>CC :Commands<CR>
   imap <C-x><C-f> <plug>(fzf-complete-file-ag)
   imap <C-x><C-l> <plug>(fzf-complete-line)
+
+" ghetto note system
+" Go to index of notes
+nnoremap <leader>ni :e ~/Documents/Notes/index.md<CR>:cd ~/Documents/Notes<CR>
+" Depends on grepprg being set to rg
+command! -nargs=1 Ngrep grep "<args>" -g "*.md" ~/Documents/Notes
+nnoremap <leader>nn :Ngrep 
+
+" open quicklist vertical
+command! Vlist botright vertical copen | vertical resize 50
+nnoremap <leader>v :Vlist<CR>
 
 " Search with ripgrep
 command! -bang -nargs=* Rg
