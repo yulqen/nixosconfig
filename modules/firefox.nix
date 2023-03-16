@@ -89,6 +89,7 @@ in
       ];
       settings = {
         "extensions.pocket.enabled" = false;
+        "services.sync.prefs.sync.addons" = false;
         "browser.newtabpage.enabled" = false;
         "browser.search.region" = "GB";
         "browser.search.isUS" = false;
@@ -97,7 +98,7 @@ in
         "browser.bookmarks.showMobileBookmarks" = true;
         "browser.startup.homepage" = "https://start.duckduckgo.com";
         "dom.security.https_only_mode" = true;
-        "identity.fxaccounts.enabled" = false;
+        "identity.fxaccounts.enabled" = true;
         "privacy.trackingprotecton.enabled" = true;
         "privacy.donottrackheader.enabled" = true;
         "privacy.globalprivacycontrol.enabled" = true;
