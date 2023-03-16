@@ -9,10 +9,6 @@
     EDITOR = "vim";
   };
 
-  home.sessionPath = [
-    "/home/lemon/bin"
-  ];
-
   #gnupg agent
   services.gpg-agent = {
     enable = true;

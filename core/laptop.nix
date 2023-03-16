@@ -14,10 +14,12 @@
   # shell
   users.users.lemon.shell = pkgs.fish;
   environment.shells = with pkgs; [ fish ];
+  environment.localBinInPath = true; # add ~/.local/bin to PATH
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    (perl.withPackages(ps: [ ps.DateTime ps.JSON ]))
     pciutils
     alsa-utils
     vim
