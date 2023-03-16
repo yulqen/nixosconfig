@@ -88,6 +88,7 @@ noremap k gk
 
 set shell=/bin/sh
 set hi=500
+set scrolloff=0
 set novisualbell
 set number	"show line numbers
 set wildmenu	"enable a menu that shows tab completion options in the status bar

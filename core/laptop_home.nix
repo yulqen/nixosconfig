@@ -9,9 +9,9 @@
     EDITOR = "vim";
   };
 
-  # home.sessionPath = [
-  #   "$HOME/bin"
-  # ];
+  home.sessionPath = [
+    "/home/lemon/bin"
+  ];
 
   #gnupg agent
   services.gpg-agent = {
@@ -228,6 +228,19 @@ set -g @resurrect-restore 'R'
     };
   };
   programs.fish = {
+    functions = {
+      tj = {
+		argumentNames = "message";
+		description = "Log to the daily journal - wrapper around _tj script";
+		body = ''
+		  if test -n "$message"
+			  echo "$message" | _tj
+		  else
+			  echo "Please give me your message, wrapped in quotes."
+		  end
+		'';
+		};
+	};
     shellInit = ''
          set fish_greeting ""
          set -gx LESS '-iMRS -x2'
