@@ -24,6 +24,7 @@
     alsa-utils
     vim
     emacs
+    dejavu_fonts
     pavucontrol
     syncthing
     notmuch

@@ -43,9 +43,9 @@
           decorations: none
         font:
           normal:
-            family: Iosevka
+            family: Dejavu Sans Mono
             style: Regular
-          size: 12.0
+          size: 10.0
       '';
   };
 
