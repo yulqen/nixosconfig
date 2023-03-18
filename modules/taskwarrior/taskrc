@@ -138,7 +138,7 @@ urgency.due.coefficient=1.1
 # Colours
 #color.project.code.dbasik=green
 #color.tag.next=black on bright yellow
-color.tag.killlist=rgb104 on black
+color.tag.killlist=yellow on black
 #color.due.today=red on yellow
 #color.overdue=bold red
 ##color.active=bold yellow
