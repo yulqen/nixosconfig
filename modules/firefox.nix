@@ -7,13 +7,13 @@ in
   programs.browserpass.enable = true;
   programs.firefox = {
     enable = true;
-    extensions = with addons; [
-      ublock-origin
-      browserpass
-      bitwarden
-      vimium
-    ];
     profiles.lemon = {
+      extensions = with addons; [
+        ublock-origin
+        browserpass
+        bitwarden
+        vimium
+      ];
       search.default = "DuckDuckGo";
       search.force = true;
       search.engines = {
