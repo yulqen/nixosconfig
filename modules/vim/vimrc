@@ -411,6 +411,13 @@ command! -bang -nargs=* Rg
 
 nnoremap <C-p>a :Rg 
 
+" from https://www.youtube.com/watch?v=E_rbfQqrm7g
+" easier copy and pasting to and from external in vim!
+" this copies to clipboard and primary selection
+vn remap <C-c> "*y let @+=@*<CR>
+" make sure you are in normal mode for this to work, I think.
+map <C-v> "+P
+
 "" Quick Editing vimrc
 nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
 
