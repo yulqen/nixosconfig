@@ -459,7 +459,8 @@ let g:gruvbox_number_column='bg0'
 let g:gruvbox_invert_signs='0'
 let g:gruvbox_improved_strings='0'
 set background=dark
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme hipster
 "colorscheme delek
 "
 " manual highlights
