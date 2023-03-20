@@ -1,9 +1,13 @@
 { config, pkgs, ...}: {
   
     programs.vim = {
+      defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
+        coc-nvim
+        coc-pyright
         fzf-vim
         vim-sensible
+        vim-nix
         vim-polyglot
         vim-commentary
         vim-dispatch

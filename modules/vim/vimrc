@@ -144,7 +144,7 @@ endfunction
 autocmd BufLeave * call s:copy_filename_as_mdlink()
 
 " Ultisnips
-let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
@@ -205,9 +205,11 @@ nmap <silent> t<C-g> :TestVisit<CR>
 " nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " " CoC GoTo code navigation.
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 "
 " ALE ale config
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -247,7 +249,6 @@ let g:ale_python_mypy_options = '--config-file mypy.ini'
 " let g:ale_sign_error = '>>'
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 0
-nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 "nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -327,7 +328,7 @@ autocmd FileType go nmap <leader>R :GoRun<CR>
 " auto import...
 let g:go_fmt_command = "goimports"
 " automatic type info on cursor
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 2
 let g:go_snippet_engine = "ultisnips"
 au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
 au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
@@ -414,9 +415,9 @@ nnoremap <C-p>a :Rg
 " from https://www.youtube.com/watch?v=E_rbfQqrm7g
 " easier copy and pasting to and from external in vim!
 " this copies to clipboard and primary selection
-vn remap <C-c> "*y let @+=@*<CR>
+"vn remap <C-c> "*y let @+=@*<CR>
 " make sure you are in normal mode for this to work, I think.
-map <C-v> "+P
+"map <C-v> "+P
 
 "" Quick Editing vimrc
 nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
