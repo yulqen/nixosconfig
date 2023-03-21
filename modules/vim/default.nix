@@ -3,8 +3,9 @@
     programs.vim = {
       defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
-        coc-nvim
-        coc-pyright
+        # coc-nvim
+        # coc-pyright
+        YouCompleteMe
         fzf-vim
         vim-sensible
         vim-nix
