@@ -235,6 +235,8 @@ set -g @resurrect-restore 'R'
     enable = true;
     shellAliases = {
       ns = "nix shell";
+      qnv = "vim ~/Documents/Notes/quicknote.md";
+      qnl = "less ~/Documents/Notes/quicknote.md";
       nrs = "sudo nixos-rebuild switch --flake .#";
       chubby = "echo 'chubby bobbins!'";
       abook = "abook --datafile ~/Documents/sync/.abook/addressbook";
