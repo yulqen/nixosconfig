@@ -20,6 +20,8 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
       isort
       yapf
       pandoc
+      font-manager
+      texlive.combined.scheme-small
       taskwarrior
       imagemagick
       taskopen
