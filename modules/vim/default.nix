@@ -9,6 +9,7 @@
         fzf-vim
         vim-sensible
         vim-nix
+        vim-markdown
         vim-polyglot
         vim-commentary
         vim-dispatch

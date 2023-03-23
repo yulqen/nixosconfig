@@ -176,6 +176,9 @@ let test#go#runner = 'gotest'
 " To run mypy using vim-dispath -with Dispatch
 autocmd FileType python let b:dispatch = 'mypy --ignore-missing-imports'
 
+" Set wrap option for Markdown files
+autocmd FileType markdown setlocal linebreak
+
 " notational-fzf-vim
 let g:nv_search_paths = ['~/Notes', '~/Notes/Archive']
 
@@ -209,6 +212,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" disable folding by default with vim-markdown
+let g:vim_markdown_folding_disabled = 1
 
 "
 " ALE ale config
