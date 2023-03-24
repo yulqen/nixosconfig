@@ -10,6 +10,12 @@
       options = "--delete-older-than 7d";
     };
   };
+
+  # docker
+  virtualisation.docker.rootless = {
+	enable = true;
+	setSocketVariable = true;
+  };
   
   # shell
   users.users.lemon.shell = pkgs.fish;
