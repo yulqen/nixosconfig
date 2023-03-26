@@ -112,6 +112,7 @@ set -g @resurrect-restore 'R'
       }
     ];
     extraConfig = ''
+      set -g default-terminal "screen-256color"
       bind | split-window -h
       bind - split-window -v
       bind -r h select-pane -L
