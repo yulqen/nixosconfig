@@ -2,7 +2,7 @@
 {pkgs, stdenv, ...}:
 let
   lemmo = pkgs.writeShellScriptBin "lemmo" ''
-NOTES=/home/$USER/Documnets/Notes
+NOTES=/home/$USER/Documents/Notes
 TARGET_DIR=/home/lemon/Documents/Notes/homezet
 VIM=${pkgs.vim}/bin/vim
 

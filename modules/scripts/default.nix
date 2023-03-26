@@ -4,5 +4,6 @@
     ./tj.nix
     ./tjclip.nix
     ./todj.nix
+    ./batnote.nix
   ];
 }
