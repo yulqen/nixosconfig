@@ -251,6 +251,14 @@ programs =
 
         extraConfig =
           ''
+
+            ## Abook
+            set query_command= "abook --datafile ~/Documents/sync/.abook/addressbook --mutt-query '%s'"
+            macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
+            macro index,pager  A "<pipe-message>abook --datafile ~/Documents/sync/.abook/addressbook --add-email<return>" "Add this sender to Abook"
+            bind editor <Tab> complete-query
+            bind editor ^T    complete
+
             set rfc2047_parameters = yes
             set sleep_time = 0		
             set markers = no	
