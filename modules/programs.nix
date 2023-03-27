@@ -15,6 +15,7 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
 #      }))
       aerc
       python311
+      newsboat
       bat
       ranger
       gnumake

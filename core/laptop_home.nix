@@ -214,6 +214,136 @@ set -g @resurrect-restore 'R'
     fileWidgetOptions = [ "--preview 'head {}'" ];
     historyWidgetOptions = [ "--sort" "--exact" ];
   };
+
+  programs.newsboat = {
+    enable = true;
+    urls = [
+      { url = "https://hnrss.org/newcomments?q=openbsd"; }
+      { url = "https://hnrss.org/newest?q=openbsd"; }
+      { url = "https://hnrss.org/newest?q=plaintext"; }
+      { url = "https://hnrss.org/newest?q=taskwarrior"; }
+      { url = "https://hnrss.org/newest?q=Roam"; }
+      { url = "https://hnrss.org/newest"; }
+      { url = "https://herbertlui.net/feed/"; }
+      { url = "https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml"; }
+      { url = "https://reallifemag.com/rss"; }
+      { url = "https://yulqen.org/blog/index.xml"; }
+      { url = "https://yulqen.org/stream/index.xml"; }
+      { url = "https://perso.pw/openbsd-current.xml"; }
+      { url = "https://dataswamp.org/~solene/rss.xml"; }
+      { url = "https://baty.net/feed/"; }
+      { url = "https://bsdly.blogspot.com/feeds/posts/default"; }
+      { url = "https://sivers.org/en.atom"; }
+      { url = "http://feeds.bbci.co.uk/news/rss.xml"; }
+      { url = "http://feeds.bbci.co.uk/sport/rugby-union/rss.xml?edition=uk"; }
+      { url = "https://krebsonsecurity.com/feed/"; }
+      { url = "https://www.computerweekly.com/rss/IT-security.xml"; }
+      { url = "https://undeadly.org/errata/errata.rss"; }
+      { url = "https://eli.thegreenplace.net/feeds/all.atom.xml"; }
+      { url = "https://m-chrzan.xyz/rss.xml"; }
+      { url = "https://plaintextproject.online/feed.xml"; }
+      { url = "http://ebb.org/bkuhn/blog/rss.xml"; }
+      { url = "https://usesthis.com/feed.atom"; }
+      { url = "http://www.linuxjournal.com/node/feed"; }
+      { url = "http://www.linuxinsider.com/perl/syndication/rssfull.pl"; }
+      { url = "http://feeds.feedburner.com/mylinuxrig"; }
+      { url = "https://landchad.net/rss.xml"; }
+      { url = "https://lukesmith.xyz/rss.xml"; }
+      { url = "https://yewtu.be/feed/channel/UCs6KfncB4OV6Vug4o_bzijg"; }
+      { url = "https://idle.nprescott.com/"; }
+      { url = "https://eradman.com/"; }
+      { url = "https://hunden.linuxkompis.se/feed.xml"; }
+      { url = "https://greghendershott.com/"; }
+      { url = "https://www.romanzolotarev.com/rss.xml"; }
+      { url = "https://feeds.feedburner.com/StudyHacks"; }
+      { url = "https://www.theregister.com/Design/page/feeds.html"; }
+      { url = "https://stevenpressfield.com/feed"; }
+      { url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCrqM0Ym_NbK1fqeQG2VIohg"; }
+      { url = "https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhAh"; }
+      { url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCittVh8imKanO_5KohzDbpgph"; }
+      { url = "https://www.youtube.com/feeds/videos.xml?channel_id=UChWbNrHQHvKK6paclLp7WYw"; }
+      { url = "https://www.youtube.com/feeds/videos.xml?channel_id=UC5A6gpksxKgudZxrTOpz0XA"; }
+      { url = "https://www.reddit.com/r/stallmanwasright.rss"; }
+      { url = "http://feeds2.feedburner.com/Command-line-fu"; }
+      { url = "https://www.debian.org/News/news"; }
+      { url = "https://opensource.org/news.xml"; }
+      { url = "https://www.fsf.org/static/fsforg/rss/news.xml"; }
+      { url = "https://jordanorelli.com/rss"; }
+      { url = "https://www.c0ffee.net/rss/"; }
+      { url = "http://tonsky.me/blog/atom.xml"; }
+      { url = "https://akkshaya.blog/feed"; }
+      { url = "https://miguelmota.com/index.xml"; }
+      { url = "https://web3isgoinggreat.com/feed.xml"; }
+      { url = "https://feeds.feedburner.com/arstechnica/open-source"; }
+      { url = "https://karl-voit.at/feeds/lazyblorg-all.atom_1.0.links-only.xml"; }
+      { url = "https://nitter.net/openbsdnow/rss"; }
+      { url = "https://nitter.net/openbsd/rss"; }
+      { url = "https://nitter.net/webzinepuffy/rss"; }
+      { url = "https://nitter.net/bsdnow/rss"; }
+      { url = "https://nitter.net/jcs/rss"; }
+      { url = "https://nitter.net/openbsdjournal/rss"; }
+      { url = "https://nitter.net/pitrh/rss"; }
+      { url = "https://nitter.net/sizeofvoid/rss"; }
+      { url = "https://nitter.net/canadianbryan/rss"; }
+      { url = "https://nitter.net/wesley974/rss"; }
+      { url = "https://nitter.net/slashdot/rss"; }
+      { url = "https://www.romanzolotarev.com/rss.xml"; }
+      { url = "https://www.romanzolotarev.com/n/rss.xml"; }
+    ];
+    extraConfig = ''
+auto-reload no
+run-on-startup toggle-show-read-feeds
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+bind-key d pagedown
+bind-key u pageup
+#bind-key l open
+bind-key h quit
+bind-key a toggle-article-read
+bind-key n next-unread
+bind-key N prev-unread
+bind-key D pb-download
+bind-key U show-urls
+bind-key x pb-delete
+
+refresh-on-startup no
+define-filter "Linux articles" "title =~ \"Linux\""
+color info color15 color6
+#macro y set browser "mpv %u"; open-in-browser ; set browser "elinks %u"
+#color listfocus color15 color0
+color listfocus color14 color0
+color listfocus_unread color15 color0 bold
+#highlight-article "title =~ \"Productivity\"" white red bold
+#highlight-article "title =~ \"Setup\"" yellow red bold
+#highlight all "Linux" yellow red bold
+notify-program "notify-send"
+notify-screen yes
+notify-xterm yes
+
+max-items 40
+download-path "~/Downloads"
+
+player mpv
+#browser /home/lemon/bin/lynx
+macro m set browser "mpv %u" ; open-in-browser ; set browser "/home/lemon/dotfiles/lynx/lynx %u"
+macro y set browser "get-newsboat-comment.sh %u" ; open-in-browser ; set browser "/home/lemon/dotfiles/lynx/lynx %u"
+
+confirm-mark-all-feeds-read no
+confirm-mark-feed-read no
+
+show-read-articles no
+
+highlight article "^(Title):.*$" blue default
+highlight article "https?://[^ ]+" red default
+highlight article "\\[image\\ [0-9]+\\]" green default
+    '';
+  };
   
   programs.zathura.enable = true;
   programs.ncspot.enable = true;
