@@ -5,8 +5,14 @@ if filereadable(expand('$VIMRUNTIME/defaults.vim'))
 	unlet! g:skip_defaults_vim
 	source $VIMRUNTIME/defaults.vim
 endif
-"
-"
+
+" macro to go to end of sentence and add a line break (for
+" one-line-per-sentence vimming...)
+let @s = ")i\<BS>\<CR>\<Esc>"
+
+" spell checking
+set spell spelllang=en_gb
+
 " leader
 let maplocalleader = "\\"
 let mapleader = ","
@@ -72,19 +78,11 @@ cnoremap <down> <Nop>
 cnoremap <left> <Nop>
 cnoremap <right> <Nop>
 
-" this needs to be here when using vim native package manager:
-" https://github.com/dracula/vim/issues/161
-"packadd! dracula | colorscheme dracula
-
 " ignore wrapping. you can move to the visual start of end of a line with `g0`
 " and `g$`, respectively.
 noremap j gj
 noremap k gk
 "
-
-" These do strange things to centering of text, etc.
-"set sidescrolloff=999
-"set scrolloff=999
 
 set shell=/bin/sh
 set hi=500
@@ -255,25 +253,7 @@ let g:ale_python_mypy_options = '--config-file mypy.ini'
 " let g:ale_sign_error = '>>'
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 0
-
-" Use K to show documentation in preview window.
-"nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   elseif (coc#rpc#ready())
-"     call CocActionAsync('doHover')
-"   else
-"     execute '!' . &keywordprg . " " . expand('<cword>')
-"   endif
-" endfunction
-"
-"" Quick Editing vimrc
-nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
-
-" Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
+nmap <silent> gr <Plug>(coc-references)
 
 " clear search highlights
 nnoremap <leader><space> :noh<cr>:call clearmatches()<cr>
@@ -418,41 +398,8 @@ command! -bang -nargs=* Rg
 
 nnoremap <C-p>a :Rg 
 
-" from https://www.youtube.com/watch?v=E_rbfQqrm7g
-" easier copy and pasting to and from external in vim!
-" this copies to clipboard and primary selection
-"vn remap <C-c> "*y let @+=@*<CR>
-" make sure you are in normal mode for this to work, I think.
-"map <C-v> "+P
-
 "" Quick Editing vimrc
 nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
-
-" dracula (must be set before colorscheme)
-"let g:dracula_colorterm = 0
-"let g:dracula_bold = 1
-"let g:dracula_italic = 0 " this has to be set to 0 to avoid lots of erroneous highlighting (https://github.com/dracula/vim/issues/219)
-"let g:dracula_underline = 1
-
-
-" Colorscheme
-
-"" this stuff from https://github.com/morhetz/gruvbox/wiki/Terminal-specific
-""Use e 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-""If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-""(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-"if (empty($TMUX))
-"  if (has("nvim"))
-"    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-"    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"  endif
-"  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-"  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-"  if (has("termguicolors"))
-"    set termguicolors
-"  endif
-"endif
 
 syntax enable
 let g:solarized_termcolors=256
