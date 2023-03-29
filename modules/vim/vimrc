@@ -1,17 +1,11 @@
 "Fark all from https://jamesdixon.dev/posts/a-minimal-vimrc/
 set nocompatible
-
-if filereadable(expand('$VIMRUNTIME/defaults.vim'))
-	unlet! g:skip_defaults_vim
-	source $VIMRUNTIME/defaults.vim
-endif
+syntax on			"turn syntax highlighting on
+filetype plugin indent on	"load plugin and indent files associated a detected filetype
 
 " macro to go to end of sentence and add a line break (for
 " one-line-per-sentence vimming...)
 let @s = ")i\<BS>\<CR>\<Esc>"
-
-" spell checking
-set spell spelllang=en_gb
 
 " leader
 let maplocalleader = "\\"
@@ -20,9 +14,6 @@ let mapleader = ","
 " encryption method when using :X
 set cm=blowfish2
 
-" Source this file again.
-noremap <silent> <localleader>rc :source ~/.vim/vimrc<CR>
-"
 " Underline the current line, based on its length.
 noremap <silent> <leader>ul mmyypVr-<Esc>`m
 "
@@ -37,7 +28,6 @@ noremap <silent> <leader>rg mmF`xf`x`m
 " Jump up or down by 10 lines.
 noremap <silent> J 10j
 noremap <silent> K 10k
-
 
 " Place timestamps, be it date (YYYY-MM-DD) or time (HH:MM:SS).
 if (exists("*strftime"))
@@ -54,41 +44,11 @@ noremap <silent> <leader>rpy :!clear; python %<CR>
 noremap <silent> <leader>rb :!clear; bash %<CR>
 noremap <silent> <leader>rs :!clear; sh %<CR>
 
-" Disable arrow keys for normal mode.
-noremap <up> <Nop>
-noremap <down> <Nop>
-noremap <left> <Nop>
-noremap <right> <Nop>
-
-" Disable arrow keys for insert mode.
-inoremap <up> <Nop>
-inoremap <down> <Nop>
-inoremap <left> <Nop>
-inoremap <right> <Nop>
-
-" Disable arrow keys for visual mode.
-vnoremap <up> <Nop>
-vnoremap <down> <Nop>
-vnoremap <left> <Nop>
-vnoremap <right> <Nop>
-
-" Disable arrow keys for command mode.
-cnoremap <up> <Nop>
-cnoremap <down> <Nop>
-cnoremap <left> <Nop>
-cnoremap <right> <Nop>
-
-" ignore wrapping. you can move to the visual start of end of a line with `g0`
-" and `g$`, respectively.
-noremap j gj
-noremap k gk
-"
-
 set shell=/bin/sh
 set hi=500
 set scrolloff=0
 set novisualbell
-set number	"show line numbers
+set relativenumber	"show line numbers
 set wildmenu	"enable a menu that shows tab completion options in the status bar
 set wildchar=<TAB>
 set showmatch	"highlights matching brackets on cursor hover
@@ -125,6 +85,9 @@ if executable('rg')
 	set grepprg=rg\ --color=never\ --vimgrep
 endif
 
+" From Practical Vim p101 - Easy expansion of Active File Directory
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
 " i don't bother with folding, but it's here if i need it.
 if has('folding')
 	set foldmethod=marker
@@ -132,128 +95,8 @@ if has('folding')
 	set viewoptions=folds,options,cursor,unix,slash
 endif
 
-" from https://www.reddit.com/r/vim/comments/f5gi2g/vim_notetaking_automatic_link_creation_between/
-" copies a link from file from previous buffer for pasting into
-" next buffer with "ap
-function! s:copy_filename_as_mdlink()
-	    let fname=expand("%")
-		let @a="[" . fname . "](./" . fname. ")"
-endfunction
-autocmd BufLeave * call s:copy_filename_as_mdlink()
-
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-" YouCompleteMe
-let g:ycm_python_interpreter_path = '.venv/bin/python3'
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-let g:ycm_global_ycm_extra_conf = '~/.global_extra_conf.py'
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-
-" vim-test
-" use vim-dispatch to run tests in the quickfix window
-" from Modern Vim Ch.4
-" the mappings below are from vim-test
-" https://github.com/vim-test/vim-test
-" dispatch opens send test output to quickfix window
-let test#strategy = "basic"
-"let test#strategy = "basic"
-let test#python#runner = "djangotest"
-"let test#project_root = "./dbasik/"
-let test#vim#term_position = "topleft 10"
-" let test#python#pytest#options = '-vvv --tb=short'
-let test#python#pytest#options = '--tb=short'
-let test#go#runner = 'gotest'
-"let test#go#gotest#options = '-v'
-" To run mypy using vim-dispath -with Dispatch
-autocmd FileType python let b:dispatch = 'mypy --ignore-missing-imports'
-
-" Set wrap option for Markdown files
-autocmd FileType markdown setlocal linebreak
-
-" notational-fzf-vim
-let g:nv_search_paths = ['~/Notes', '~/Notes/Archive']
-
-" jedo-vim
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_stubs_command = "<leader>s"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-
-" test
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-"nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> <S-F10> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
-
-" CoC extensions
-"let g:coc_global_extensions = ['coc-tsserver', 'coc-pyright', 'coc-html']
-
-" Coc Use `[g` and `]g` to navigate diagnostics
-" Coc Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-" nmap <silent> [g <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" " CoC GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" disable folding by default with vim-markdown
-let g:vim_markdown_folding_disabled = 1
-
-"
-" ALE ale config
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-let g:ale_lint_on_text_changed = 'never'
-
-
-let g:ale_hover_cursor = 1
-let g:ale_enabled = 1
-let g:ale_sign_column_always = 1
-let g:ale_open_list = 0
-let g:ale_set_highlights = 1
-let g:ale_set_signs = 1
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_echo_cursor = 1
-let g:ale_echo_msg_error_str = 'Error'
-let g:ale_echo_msg_format = '%linter% - %code: %%s'
-let g:ale_loclist_msg_format = '%linter% - %code: %%s'
-let g:ale_echo_msg_warning_str = 'Warning'
-let g:ale_linters = {'python': ['flake8', 'mypy'],
-\                    'ocaml': ['merlin'],
-\                    'cpp': ['clang'],
-\                    'yaml': ['yamllint'],
-\                    'c': ['clang'],
-\                    'go': ['gopls', 'golint', 'gofmt'],
- \}
-let g:ale_fixers = {
-\           'python': ['isort', 'yapf', 'black'],
-\           'go': ['gofmt'],
-\           'rust': ['rustfmt']
-\           }
-let g:ale_python_mypy_ignore_invalid_syntax = 1
-let g:ale_python_mypy_executable = 'mypy'
-let g:ale_python_mypy_options = '--config-file mypy.ini'
-" let g:ale_sign_error = '>>'
-let g:ale_fix_on_save = 1
-let g:ale_linters_explicit = 0
-nmap <silent> gr <Plug>(coc-references)
+" Check whether any buffers have been updated outside of vim
+nnoremap <F5> :checktime<CR>
 
 " clear search highlights
 nnoremap <leader><space> :noh<cr>:call clearmatches()<cr>
@@ -264,118 +107,6 @@ let g:netrw_preview = 1
 " journal stuff
 autocmd BufNewFile,BufReadPost *.md map <leader>jj <Esc>:r! date +" - \%H:\%M: "<ENTER>kJA<Esc>$<space><Esc> 
 autocmd BufNewFile,BufReadPost *.md map <leader>jd <Esc>:r! date +"(\%Y-\%m-\%dT\%H:\%M)"<ENTER>i<backspace><space><Esc>
-
-" switch off Coc with Markdown
-autocmd FileType markdown let b:coc_suggest_disable = 1
-
-syntax on			"turn syntax highlighting on
-filetype plugin indent on	"load plugin and indent files associated a detected filetype
-runtime macros/matchit.vim	"allows jumping between brackets with % in normal mode
-
-" Go stuff
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-let g:go_doc_keywordprg_enabled = 1
-let g:go_list_height = 0
-let g:go_highlight_operators = 1
-let g:go_highlight_function_parameters = 1
-let g:go_doc_max_height = 50
-let g:go_doc_popup_window = 1
-let g:go_list_height = 10
-
-
-" vim-go debugger window settings
-let g:go_debug_windows = {
-        \ 'vars':       'leftabove 40vnew',
-        \ 'stack':      'leftabove 20new',
-        \ 'goroutines': 'botright 10new',
-        \ 'out':        'botright 5new',
-\ }
-
-" vim-go and gopls
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_play_browser_command = 'firefox %URL% &'
-let g:go_test_show_name = 1
-let g:go_auto_type_info = 1
-let test#go#runner = 'gotest'
-let g:go_term_mode = "split"
-let g:go_term_height = 50
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-
-"autocmd FileType go nmap <leader>r :w<CR>:split <bar> terminal go run %<CR>
-autocmd FileType go nmap <leader>R :GoRun<CR>
-" highlights the variable in the file for you..
-"let g:go_auto_sameids = 1
-" auto import...
-let g:go_fmt_command = "goimports"
-" automatic type info on cursor
-let g:go_auto_type_info = 2
-let g:go_snippet_engine = "ultisnips"
-au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
-au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
-au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
-au Filetype go nmap <leader>gaf <Plug>(go-fmt)
-au Filetype go nmap <leader>gal <Plug>(go-lint)
-au Filetype go nmap <leader>gbx <Plug>(go-deps)
-au FileType go nmap <F8> :GoTestFunc -short<cr>
-au FileType go nmap <F10> :GoTest -short<cr>
-au FileType go nmap <F9> :DlvToggleBreakpoint<CR>
-au FileType go nmap <S-F9> :DlvTest<CR>
-au FileType go nmap <F11> :DlvDebug<CR>
-au FileType go nmap <S-F5> :GoRename<CR>
-
-" FZF
-" This is the default extra key bindings
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-" - FZF Popup window (center of the screen)
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', '#f8f8f2'],
-  \ 'bg':      ['bg', '#282a36'],
-  \ 'hl':      ['fg', '#bd93f9'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', '#ffb86c'],
-  \ 'prompt':  ['fg', '#50fa7b'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', '#ffb86c'],
-  \ 'header':  ['fg', '#6272a4'] }
-"  More fzf settings
-" (https://github.com/zenbro/dotfiles/blob/master/.nvimrc#L151-L187)
- let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-
-" command history is :History:
-  nnoremap <C-s> :GFiles!<CR>
-  nnoremap <leader><C-p> :<C-u>FZF!<CR>
-  nnoremap <leader>t :Files<CR>
-  nnoremap <leader>o :Tags<CR>
-  nnoremap <leader>h :History<CR>
-  nnoremap <silent> <leader>0 :Files<CR>
-  nnoremap <silent> <leader>; :BLines<CR>
-  nnoremap <silent> <leader>l :Lines<CR>
-  nnoremap <silent> <leader>o :BTags<CR>
-  nnoremap <silent> <leader>bu :Buffers<CR>
-  nnoremap <silent> <leader>? :History:<CR>
-  nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
-  nnoremap <silent> <leader>P :call SearchWordWithAg()<CR>
-  vnoremap <silent> <leader>P :call SearchVisualSelectionWithAg()<CR>
-  nnoremap <silent> <leader>ft :Filetypes<CR>
-  nnoremap <silent> <leader>CC :Commands<CR>
-  imap <C-x><C-f> <plug>(fzf-complete-file-ag)
-  imap <C-x><C-l> <plug>(fzf-complete-line)
 
 " ghetto note system
 " Go to index of notes
@@ -401,22 +132,9 @@ nnoremap <C-p>a :Rg
 "" Quick Editing vimrc
 nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
 
-syntax enable
-let g:solarized_termcolors=256
-
-let g:gruvbox_termcolors=256
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
-let g:gruvbox_hls_cursor='orange'
-let g:gruvbox_sign_column='bg0'
-let g:gruvbox_number_column='bg0'
-let g:gruvbox_invert_signs='0'
-let g:gruvbox_improved_strings='0'
 set background=dark
-" colorscheme gruvbox
 colorscheme hipster
-"colorscheme delek
-"
+
 " manual highlights
 " highlight Visual ctermfg=black ctermbg=LightMagenta
 " highlight SignColumn ctermbg=black ctermfg=white
@@ -424,13 +142,6 @@ colorscheme hipster
 " highlight DiffAdd term=bold ctermfg=yellow ctermbg=black
 " highlight DiffDelete term=bold ctermfg=red ctermbg=black
 " highlight DiffChange term=bold ctermfg=black ctermbg=DarkGreen
-
-
-map <F7> :if exists("g:syntax_on") <Bar>
-\   syntax off <Bar>
-\ else <Bar>
-\   syntax enable <Bar>
-\ endif <CR>
 
 augroup general
     autocmd!
