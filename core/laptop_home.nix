@@ -45,7 +45,7 @@
           normal:
             family: Dejavu Sans Mono
             style: Regular
-          size: 10.0
+          size: 9.0
       '';
   };
 
