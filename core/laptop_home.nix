@@ -354,6 +354,31 @@ highlight article "\\[image\\ [0-9]+\\]" green default
       save-position-on-quit = true;
     };
   };
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+#      source ${pkgs.pass}/share/bash/vendor_completions.d/pass.bash
+#      source ${pkgs.taskwarrior}/share/bash/vendor_completions.d/task.bash
+    '';
+    shellAliases = {
+      ns = "nix shell";
+      qnv = "vim ~/Documents/Notes/quicknote.md";
+      qnl = "less ~/Documents/Notes/quicknote.md";
+      nrs = "sudo nixos-rebuild switch --flake .#";
+      abook = "abook --datafile ~/Documents/sync/.abook/addressbook";
+      notes = "cd ~/Documents/Notes";
+      bud = "cd ~/Documents/Budget/ledger/hledger/";
+      getip = "curl ifconfig.me";
+      tprojects = "task rc.list.all.projects=1 projects";
+      ttags = "task rc.list.all.tags=1 tags";
+      tkilled = "task +killlist list";
+      ttagged = "task tags.any: list";
+      tuntagged = "task tags.none: list";
+      ttoday = "task ml_due_or_scheduled_today";
+      tl = "/home/lemon/Documents/Notes/todo/todo.sh list";
+      t = "/home/lemon/Documents/Notes/todo/todo.sh";
+    };
+  };
   programs.fish = {
     functions = {
 	};
@@ -371,6 +396,7 @@ highlight article "\\[image\\ [0-9]+\\]" green default
       nrs = "sudo nixos-rebuild switch --flake .#";
       chubby = "echo 'chubby bobbins!'";
       abook = "abook --datafile ~/Documents/sync/.abook/addressbook";
+      notes = "cd ~/Documents/Notes";
       et = "emacsclient -nw";
       bud = "cd ~/Documents/Budget/ledger/hledger/";
       getip = "curl ifconfig.me";
@@ -380,6 +406,8 @@ highlight article "\\[image\\ [0-9]+\\]" green default
       ttagged = "task tags.any: list";
       tuntagged = "task tags.none: list";
       ttoday = "task ml_due_or_scheduled_today";
+      tl = "/home/lemon/Documents/Notes/todo/todo.sh list";
+      t = "/home/lemon/Documents/Notes/todo/todo.sh";
     };
   };
 

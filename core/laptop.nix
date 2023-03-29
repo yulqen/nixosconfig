@@ -18,8 +18,8 @@
   };
   
   # shell
-  users.users.lemon.shell = pkgs.fish;
-  environment.shells = with pkgs; [ fish ];
+  users.users.lemon.shell = pkgs.bash;
+  environment.shells = with pkgs; [ bash ];
   environment.localBinInPath = true; # add ~/.local/bin to PATH
 
   # List packages installed in system profile. To search, run:
