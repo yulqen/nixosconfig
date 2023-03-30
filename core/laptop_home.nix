@@ -363,6 +363,7 @@ highlight article "\\[image\\ [0-9]+\\]" green default
     '';
     shellAliases = {
       vi = "vim";
+      am = "append_to_masterlist";
       ns = "nix shell";
       qnv = "vim ~/Documents/Notes/quicknote.md";
       qnl = "less ~/Documents/Notes/quicknote.md";
