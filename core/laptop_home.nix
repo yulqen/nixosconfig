@@ -362,6 +362,7 @@ highlight article "\\[image\\ [0-9]+\\]" green default
 #      source ${pkgs.taskwarrior}/share/bash/vendor_completions.d/task.bash
     '';
     shellAliases = {
+      vi = "vim";
       ns = "nix shell";
       qnv = "vim ~/Documents/Notes/quicknote.md";
       qnl = "less ~/Documents/Notes/quicknote.md";
