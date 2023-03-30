@@ -365,6 +365,8 @@ highlight article "\\[image\\ [0-9]+\\]" green default
       ns = "nix shell";
       qnv = "vim ~/Documents/Notes/quicknote.md";
       qnl = "less ~/Documents/Notes/quicknote.md";
+      h = "hey_openai";
+      hd = "openai_data";
       nrs = "sudo nixos-rebuild switch --flake .#";
       abook = "abook --datafile ~/Documents/sync/.abook/addressbook";
       notes = "cd ~/Documents/Notes";
