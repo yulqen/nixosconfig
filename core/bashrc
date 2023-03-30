@@ -1,0 +1,103 @@
+# completion as advised by arch wiki
+complete -cf sudo man which
+
+# reduce history size
+export HISTCONTROL=ignoreboth
+
+# prevent clobbering of files
+# echo "output" >| file.txt to do it manually
+set -o noclobber
+
+# Setting PATH
+#export PATH=~/bin/:$PATH
+
+# openai keys
+source $HOME/.openai_key
+
+# Environment variables
+export TERM="screen-256color"
+export LESS="-iMRS -x2"
+export NOTES_DIR="~/Documents/Notes"
+export RANGER_LOAD_DEFAULT_RC="FALSE"
+export FZF_DEFAULT_COMMAND="ag --nocolor -g "
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--color info:108,prompt:109,spinner:108,pointer:168,marker:168"
+
+# gpg
+#export=GPG_TTY="$(tty)"
+#export=SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+#gpgconf --launch gpg-agent
+
+#completion for todo.sh
+source ~/Documents/Notes/todo/todo_completion
+complete -o default -o nospace -F _todo t
+
+# Functions
+
+###################################################################
+# To output in cat, just call todj.
+# To enable editing the files in vim, call todj vim.
+# You can use less or any other tool to display the text if you wish
+# Arguments:
+# 	None
+#	Output:
+#		Writes to stdout or opens program passed as first argument
+###################################################################
+todj () {
+  CMD=${1:-"cat"}
+  $CMD $(find /home/lemon/Documents/Notes/journal -name "*$(date '+%Y-%m-%d')*")
+}
+
+#########################################################################
+# This function takes two arguments as strings. The idea is to enable
+# passing file data into the function, such as a csv file or some code.
+# Call like this openai_data "Please optimise the following function in
+# python" "$(</path/to/file)" This is supposed to be a good way to read a
+# file's contents in bash
+# Arguments:
+# 	Text prompt
+#		File contents
+#	Output:
+#		Writes to stdout
+#########################################################################
+openai_data() {
+  if [[ $# -ne 2 ]]; then echo "Give me two params!"; return; fi
+
+		text_prompt="$1"
+    data="$2"
+    prompt="${text_prompt}: ${data}"
+    json=$(jq -n --arg p "$data" '{model: "gpt-3.5-turbo", messages: [{role: "user", content: $p}], temperature: 0.7}')
+    local gpt=$(curl https://api.openai.com/v1/chat/completions -s \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $OPENAI_KEY" \
+    -H "OpenAI-Organization: $OPENAI_ORG_ID" \
+    -d "$json")
+    echo $gpt | jq -r '.choices[0].message.content'
+}
+
+################################################################################
+# A straight forward request to the OpenAI GPT-3 model.
+# Takes a single string argument and returns a simple response.
+# hey_openai "What is the best way to open and interate through a file in Perl?"
+# Arguments:
+# 	Text prompt
+#	Output:
+#		Writes to stdout
+################################################################################
+hey_openai() {
+		prompt="$1"
+    local gpt=$(curl https://api.openai.com/v1/chat/completions -s \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $OPENAI_KEY" \
+    -H "OpenAI-Organization: $OPENAI_ORG_ID" \
+    -d "{
+        \"model\": \"gpt-3.5-turbo\",
+        \"messages\": [{\"role\": \"user\", \"content\": \"$prompt\"}],
+        \"temperature\": 0.7
+    }")
+    echo $gpt | jq -r '.choices[0].message.content'
+}
+
+# Colors for ls - yellow directories
+export LS_COLORS="$LS_COLORS:di=1;33"

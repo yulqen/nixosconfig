@@ -356,6 +356,7 @@ highlight article "\\[image\\ [0-9]+\\]" green default
   };
   programs.bash = {
     enable = true;
+    bashrcExtra = builtins.readFile ./bashrc;
     initExtra = ''
 #      source ${pkgs.pass}/share/bash/vendor_completions.d/pass.bash
 #      source ${pkgs.taskwarrior}/share/bash/vendor_completions.d/task.bash
