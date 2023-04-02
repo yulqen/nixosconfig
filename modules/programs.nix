@@ -18,6 +18,7 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
       gh
       sxiv
       ctags
+      lynx
       jq
       urlscan
       newsboat
