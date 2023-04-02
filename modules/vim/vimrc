@@ -99,6 +99,14 @@ endif
 " Check whether any buffers have been updated outside of vim
 nnoremap <F5> :checktime<CR>
 
+" Python - keybindings
+nnoremap <leader>Ts :setlocal makeprg=pytest\ -q\ %<cr>
+nnoremap <leader>Tf :setlocal makeprg=flake8\ %<cr>
+nnoremap <leader>Tb :setlocal makeprg=black\ %<cr>
+nnoremap <leader>Tm :setlocal makeprg=mypy\ --ignore-missing-imports\ %<cr>
+" then run the one set with this...
+nnoremap <leader>Tt :make!<cr>
+
 " clear search highlights
 nnoremap <leader><space> :noh<cr>:call clearmatches()<cr>
 
