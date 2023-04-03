@@ -7,5 +7,6 @@
     ./zetrename.nix
     ./batnote.nix
     ./grepnote.nix
+    ./grepjournal.nix
   ];
 }
