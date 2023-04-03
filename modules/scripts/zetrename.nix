@@ -22,8 +22,8 @@ fi
 #re='^/tmp\/Notes\/modzet\/(.{14})-(.+)\.md'
 re='^/home\/lemon\/Notes\/MOD\/modzet\/(.{14})-(.+)\.md'
 if [[ "$1" =~ $re ]]; then
-	notedate=${BASH_REMATCH[1]}
-	oldname=${BASH_REMATCH[2]}
+	notedate=\$\{BASH_REMATCH[1]}
+	oldname=\$\{BASH_REMATCH[2]}
 else
 	echo "Please ensure you pass an appropriate absolute path to the file to be renamed or ensure it is quoted."
 	exit 1

@@ -1,9 +1,10 @@
 {
   imports = [
-    ./lemmo.nix
+    ./lem.nix
     ./tj.nix
     ./tjclip.nix
     ./todj.nix
+    ./zetrename.nix
     ./batnote.nix
   ];
 }
