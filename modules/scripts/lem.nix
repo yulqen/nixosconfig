@@ -1,14 +1,14 @@
 
 {pkgs, stdenv, ...}:
 let
-  lemmo = pkgs.writeShellScriptBin "lemmo" ''
+  lem = pkgs.writeShellScriptBin "lem" ''
 NOTES=/home/$USER/Documents/Notes
 TARGET_DIR=/home/lemon/Documents/Notes/homezet
 VIM=${pkgs.vim}/bin/vim
 
 if [[ "$1" = "-m" ]]; then
     msg="$\{*:2\}"
-    TARGET_DIR=/home/lemon/Documents/MODObsidian/MOD
+    TARGET_DIR=/home/lemon/Documents/MOD/modzet
     shift
 else
     msg="$@"
@@ -27,5 +27,5 @@ $VIM "$F_PATH"
 
 in
   {
-    home.packages = [ lemmo ];
+    home.packages = [ lem ];
   }
