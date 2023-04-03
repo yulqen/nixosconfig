@@ -6,5 +6,6 @@
     ./todj.nix
     ./zetrename.nix
     ./batnote.nix
+    ./grepnote.nix
   ];
 }
