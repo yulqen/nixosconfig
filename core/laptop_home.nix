@@ -326,8 +326,9 @@ define-filter "Linux articles" "title =~ \"Linux\""
 color info color15 color6
 #macro y set browser "mpv %u"; open-in-browser ; set browser "elinks %u"
 #color listfocus color15 color0
-color listfocus color14 color0
-color listfocus_unread color15 color0 bold
+color listfocus black green
+color listfocus_unread black green bold
+#highlight-article "title =~ \"Productivity\"" white red bold
 #highlight-article "title =~ \"Productivity\"" white red bold
 #highlight-article "title =~ \"Setup\"" yellow red bold
 #highlight all "Linux" yellow red bold
