@@ -363,7 +363,7 @@ highlight article "\\[image\\ [0-9]+\\]" green default
     '';
     shellAliases = {
       vi = "vim";
-      lynx = "~/.config/lynx/lynx";
+      llynx = "~/.config/lynx/lynx";
       am = "append_to_masterlist";
       ns = "nix shell";
       qnv = "vim ~/Documents/Notes/quicknote.md";
