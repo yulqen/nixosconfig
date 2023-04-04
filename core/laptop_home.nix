@@ -49,6 +49,15 @@
       '';
   };
 
+  # pdb
+  home.file = {
+    ".pdbrc".text = builtins.readFile ../modules/dotfiles/pdbrc;
+  };
+
+  home.file = {
+    ".pdbrc.py".text = builtins.readFile ../modules/dotfiles/pdbrc.py;
+  };
+
   # mailcap
   home.file = {
     ".mailcap" = {
