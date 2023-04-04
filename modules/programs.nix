@@ -14,6 +14,7 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
 #        version = "2021.3.3";
 #      }))
       aerc
+      poetry
       python311
       gh
       sxiv
