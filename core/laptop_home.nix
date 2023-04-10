@@ -1,8 +1,9 @@
-{ config, options, pkgs, ... }:
+{ config, options, pkgs, inputs, ... }:
 
 {
 
-  imports = [ ../modules ];
+  imports = [ ../modules
+                inputs.nixneovim.nixosModules.default ];
 
   home.sessionVariables = {
     LEDGER_FILE = "/home/lemon/Documents/Budget/ledger/hledger/budget.ledger";
@@ -91,6 +92,19 @@ text/plain; cat; copiousoutput; edit=$VISUAL %s
 
   home.file = {
     ".taskopenrc".text = builtins.readFile ../modules/taskopen/taskopenrc;
+  };
+
+  programs.nixneovim = {
+      enable = true;
+      plugins = {
+	lsp = {
+	  enable = true;
+	};
+	treesitter = {
+	  enable = true;
+	  indent = true;
+	};
+      };
   };
 
   # tmux
