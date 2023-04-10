@@ -94,18 +94,18 @@ text/plain; cat; copiousoutput; edit=$VISUAL %s
     ".taskopenrc".text = builtins.readFile ../modules/taskopen/taskopenrc;
   };
 
-  programs.nixneovim = {
-      enable = true;
-      plugins = {
-	lsp = {
-	  enable = true;
-	};
-	treesitter = {
-	  enable = true;
-	  indent = true;
-	};
-      };
-  };
+  # programs.nixneovim = {
+  #     enable = true;
+  #     plugins = {
+	# lsp = {
+	  # enable = true;
+	# };
+	# treesitter = {
+	  # enable = true;
+	  # indent = true;
+	# };
+  #     };
+  # };
 
   # tmux
   programs.tmux = {
