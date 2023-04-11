@@ -85,6 +85,9 @@ if executable('rg')
 	set grepprg=rg\ --color=never\ --vimgrep
 endif
 
+" From Practical Vim p101 - Easy expansion of Active File Directory
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
 " i don't bother with folding, but it's here if i need it.
 if has('folding')
 	set foldmethod=marker
