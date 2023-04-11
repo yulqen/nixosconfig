@@ -299,6 +299,9 @@ let g:fzf_colors =
 " (https://github.com/zenbro/dotfiles/blob/master/.nvimrc#L151-L187)
  let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
+ " copy the path of the current file into the system clipboard
+ nnoremap <leader>y :let @+=expand('%:p')<CR>:echo "File path copied to clipboard: " . @+<CR>
+
 " command history is :History:
   nnoremap <C-s> :GFiles!<CR>
   nnoremap <leader><C-p> :<C-u>FZF!<CR>
