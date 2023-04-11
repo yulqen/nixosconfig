@@ -311,9 +311,7 @@ let g:fzf_colors =
   nnoremap <silent> <leader>o :BTags<CR>
   nnoremap <silent> <leader>bu :Buffers<CR>
   nnoremap <silent> <leader>? :History:<CR>
-  nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
-  nnoremap <silent> <leader>P :call SearchWordWithAg()<CR>
-  vnoremap <silent> <leader>P :call SearchVisualSelectionWithAg()<CR>
+  " nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
   nnoremap <silent> <leader>ft :Filetypes<CR>
   nnoremap <silent> <leader>CC :Commands<CR>
   imap <C-x><C-f> <plug>(fzf-complete-file-ag)
