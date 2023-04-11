@@ -12,6 +12,9 @@ let mapleader = " "
 " encryption method when using :X
 set cm=blowfish2
 
+" don't do Q
+nnoremap Q <nop>
+
 " Source this file again.
 noremap <silent> <localleader>rc :source ~/.vim/vimrc<CR>
 "
