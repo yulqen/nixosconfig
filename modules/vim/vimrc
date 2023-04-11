@@ -300,9 +300,9 @@ let g:fzf_colors =
  let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
  " copy the path of the current file into the system clipboard
-nnoremap <leader>y :let @+=expand('%:p')<CR>:echo "File path copied to clipboard: " . @+<CR>
+nnoremap <leader>y :let @+=expand('%:p')<CR>:call system("true")<CR>:let @"=@+<CR>:echo "File path copied to clipboard: " . @+<CR>
 " Alternatively, format is as Markdown link
-nnoremap <leader>Y :let @+=printf("[%s](%s)", expand('%:t'), "file://" . expand('%:p'))<CR>:echo "Markdown link copied to clipboard: " . @+<CR>
+nnoremap <leader>Y :let @+=printf("[%s](%s)", expand('%:t'), "file://" . expand('%:p'))<CR>:call system("true")<CR>:let @"=@+<CR>:echo "Markdown link copied to clipboard: " . @+<CR>
 
 " command history is :History:
   nnoremap <C-s> :GFiles!<CR>
