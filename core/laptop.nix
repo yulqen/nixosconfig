@@ -68,6 +68,12 @@
   # caps lock!
   services.xserver.xkbOptions = "ctrl:swapcaps";
 
+  # touchpad
+  services.xserver.libinput.touchpad = {
+    clickMethod = "none";
+    tapping = false;
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lemon = {
     isNormalUser = true;
