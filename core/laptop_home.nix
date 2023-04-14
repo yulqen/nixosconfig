@@ -44,7 +44,7 @@
           decorations: none
         font:
           normal:
-            family: Dejavu Sans Mono
+            family: JetBrains Mono
             style: Regular
           size: 9.0
       '';
