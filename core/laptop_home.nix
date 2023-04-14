@@ -182,6 +182,18 @@ set -g @resurrect-restore 'R'
     '';
   };
 
+  # VSCode
+  # programs.vscode = {
+  #   enable = true;
+  #   extensions = [
+  #     pkgs.vscode-extensions.vscodevim.vim
+  #     pkgs.vscode-extensions.ms-python.python
+  #     pkgs.vscode-extensions.ms-python.vscode-pylance
+  #     pkgs.vscode-extensions.mads-hartmann.bash-ide-vscode
+  #     pkgs.vscode-extensions.github.copilot
+  #   ];
+  # };
+
   #password-store (unix pass)
   programs.password-store = {
     package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
