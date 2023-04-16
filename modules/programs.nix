@@ -17,6 +17,7 @@ It is because of flakes... See 3.3 in the home-manager manual for example config
       nil
       jetbrains-mono
       vistafonts
+      gnome.seahorse
       gnome.gnome-keyring
       poetry
       python311

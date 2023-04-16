@@ -74,43 +74,57 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+  # the following is a vscode configuration that I used
+  # when NOT using nixos unstable - it allowed me grab the
+  # most recent extensions from the marketplace, using the
+  # script mentioned in the NixOS Wiki page about VSCode, 
+  # under heading "Updating extensions versions".
+  # I had problems with stable NixOS because running the
+  # versionof Github Copilot referenced here, the stable
+  # VSCode was not new enough.
+  # Because as of 16 April 23, I am running unstable,
+  # I have reverted to installing extensions with Home Manager
+  # in laptop_home.nix - this does not afford the same control
+  # with extensions here, but with unstable, everything should
+  # be up to date.
   environment.systemPackages = with pkgs; [
-	(vscode-with-extensions.override {
-	  vscodeExtensions = with vscode-extensions; [
-		ms-vscode-remote.remote-ssh
-	  ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-		{
-		  name = "copilot";
-		  publisher = "GitHub";
-		  version = "1.79.10634";
-		  sha256 = "1a0s09aq66wkgc7560ggwh7sr0li5z2zrv65c8p080l3znc9lipi";
-		}
-		{
-		  name = "bash-ide-vscode";
-		  publisher = "mads-hartmann";
-		  version = "1.36.0";
-		  sha256 = "1fbwh51av0lqqi99b4yl4hllxcpzw90nzdf3akx3cjh95qykd9hf";
-		}
-		{
-		  name = "python";
-		  publisher = "ms-python";
-		  version = "2023.7.11011538";
-		  sha256 = "0wm9d75jvrra9abyknn8nksbc27rr274zjwd5jyrf488i1mha8s0";
-		}
-		{
-		  name = "vscode-pylance";
-		  publisher = "ms-python";
-		  version = "2023.4.11";
-		  sha256 = "1gayih5z1d0f7vljrzzdhaw5hf9q9gycasri273y5a0h7gw1hh7f";
-		}
-		{
-		  name = "vim";
-		  publisher = "vscodevim";
-		  version = "1.25.2";
-		  sha256 = "0j0li3ddrknh34k2w2f13j4x8s0lb9gsmq7pxaldhwqimarqlbc7";
-		}
-	  ];
-	})
+	# (vscode-with-extensions.override {
+	#   vscodeExtensions = with vscode-extensions; [
+	# 	ms-vscode-remote.remote-ssh
+	#   ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+	# 	{
+	# 	  name = "copilot";
+	# 	  publisher = "GitHub";
+	# 	  version = "1.79.10634";
+	# 	  sha256 = "1a0s09aq66wkgc7560ggwh7sr0li5z2zrv65c8p080l3znc9lipi";
+	# 	}
+	# 	{
+	# 	  name = "bash-ide-vscode";
+	# 	  publisher = "mads-hartmann";
+	# 	  version = "1.36.0";
+	# 	  sha256 = "1fbwh51av0lqqi99b4yl4hllxcpzw90nzdf3akx3cjh95qykd9hf";
+	# 	}
+	# 	{
+	# 	  name = "python";
+	# 	  publisher = "ms-python";
+	# 	  version = "2023.7.11011538";
+	# 	  sha256 = "0wm9d75jvrra9abyknn8nksbc27rr274zjwd5jyrf488i1mha8s0";
+	# 	}
+	# 	{
+	# 	  name = "vscode-pylance";
+	# 	  publisher = "ms-python";
+	# 	  version = "2023.4.11";
+	# 	  sha256 = "1gayih5z1d0f7vljrzzdhaw5hf9q9gycasri273y5a0h7gw1hh7f";
+	# 	}
+	# 	{
+	# 	  name = "vim";
+	# 	  publisher = "vscodevim";
+	# 	  version = "1.25.2";
+	# 	  sha256 = "0j0li3ddrknh34k2w2f13j4x8s0lb9gsmq7pxaldhwqimarqlbc7";
+	# 	}
+	#   ];
+	# })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -139,5 +153,8 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
+
+  #gnome keyring
+  services.gnome.gnome-keyring.enable = true;
 
 }
