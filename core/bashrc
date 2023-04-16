@@ -4,7 +4,7 @@ complete -cf sudo man which
 # reduce history size
 export HISTCONTROL=ignoreboth
 
-#export PS1='bash-\v-\u@\h \W\$ '
+export PS1='bash-\v-\u@\h \W\$ '
 #export PS1='\[\033[38;5;208m\]\u@\h:\w\$\[\033[0m\] '
 
 # vi mode
