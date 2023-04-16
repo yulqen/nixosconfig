@@ -154,6 +154,9 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
 
+  # trackpad
+  services.xserver.libinput.touchpad.disableWhileTyping = true;
+
   #gnome keyring
   services.gnome.gnome-keyring.enable = true;
 
