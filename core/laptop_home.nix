@@ -44,9 +44,9 @@
           decorations: none
         font:
           normal:
-            family: JetBrains Mono
+            family: Iosevka
             style: Regular
-          size: 9.0
+          size: 12.0
       '';
   };
 
