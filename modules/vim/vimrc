@@ -43,6 +43,47 @@ endif
 " Execute the current line with BASH.
 noremap <silent> <leader>rl :.w !bash<CR>
 
+" YCM
+let g:ycm_enable_inlay_hints = 1
+nnoremap <silent> <localleader>h <Plug>(YCMToggleInlayHints)
+nnoremap gd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+nnoremap K :YcmCompleter GetDoc<CR>
+" this will disable tab, allowing it to be used for ultisnips
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+
+" snippets
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" vim-test
+nmap <silent> tn :TestNearest<CR>
+nmap <silent> tf :TestFile<CR>
+nmap <silent> ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
+let test#strategy = "basic"
+let test#python#pytest#options = '-q -s'
+let test#python#runner = 'pytest'
+let test#vimterminal#term_position = "belowright"
+
+" to run tests automatically
+"augroup test
+"  autocmd!
+"  autocmd BufWrite * if test#exists() |
+"    \   TestFile |
+"    \ endif
+"augroup END
+
 set shell=/bin/sh
 set hi=500
 set scrolloff=0
@@ -161,7 +202,7 @@ let g:vim_markdown_folding_disabled = 1
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 0
 let g:ale_hover_cursor = 1
 let g:ale_enabled = 1
 let g:ale_sign_column_always = 1
@@ -193,7 +234,6 @@ let g:ale_python_mypy_options = '--config-file mypy.ini'
 " let g:ale_sign_error = '>>'
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 0
-nmap <silent> gr <Plug>(coc-references)
 
 " Python - keybindings
 nnoremap <leader>Ts :setlocal makeprg=pytest\ -q\ %<cr>
