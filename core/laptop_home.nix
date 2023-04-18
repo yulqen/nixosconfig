@@ -480,6 +480,39 @@ highlight article "\\[image\\ [0-9]+\\]" green default
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
 	    d = "difftool";
     };
+    ignores = [
+      "__pycache__/"
+      "*.so"
+      ".Python"
+      ".idea/"
+      "venv/"
+      ".venv/"
+      "build/"
+      "develop-eggs/"
+      "eggs/"
+      "lib64/"
+      "parts/"
+      "sdist/"
+      "var/"
+      "*.egg-info/"
+      ".installed.cfg"
+      "*.egg"
+      "pip-log.txt"
+      "pip-delete-this-directory.txt"
+      ".tox/"
+      ".coverage"
+      ".cache"
+      "nosetests.xml"
+      "coverage.xml"
+      "*.mo"
+      ".ropeproject"
+      "*.log"
+      "*.pot"
+      "docs/_build/"
+      ".pdb-pyhist"
+      ".mypy_cache/"
+      "*.un~"
+    ];
     extraConfig = {
       color = {
         ui = true;
